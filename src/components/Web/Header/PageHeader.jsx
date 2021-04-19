@@ -1,5 +1,4 @@
 import React from 'react';
-import 'antd/dist/antd.css';
 import { Layout, Menu } from 'antd';
 
 import "./PageHeader.scss";

@@ -1,6 +1,9 @@
 @import "../../../scss/index.scss";
 
 .menutop {
+    position: fixed;
+    top: 0;
+    width: 100%;
     background: $primary-color;
 
     .ant-menu{

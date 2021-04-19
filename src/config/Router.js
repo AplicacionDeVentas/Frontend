@@ -5,13 +5,13 @@ import LayoutHome from "../layout/LayoutHome";
 import Home from "../pages/Home";
 
 //components
-import Error404 from "../components/Error404";
+import Error404 from "../components/Error/Error404";
 
 const router = [
     {
         paht: "/",
         component: LayoutHome,
-        exact: false,
+        exact: true,
         routes: [
             {
                 path: "/",

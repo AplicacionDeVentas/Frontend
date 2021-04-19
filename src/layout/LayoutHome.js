@@ -1,16 +1,21 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
+import {Layout} from "antd";
 import PageHeader from "../components/Web/Header/PageHeader";
+import PageFooter from "../components/Web/Footer/Footer";
 
 
 export default function LayoutHome(props){
     const {routes} = props;
-    
+    console.log(routes);
     return(
-        <>
+        <Layout>
             <PageHeader />
-            <LoadRoutes routes={routes} />
-        </>
+            <Layout.Content>
+                <LoadRoutes routes={routes} />
+            </Layout.Content>
+            <PageFooter />            
+        </Layout>
     )
 }
 
