@@ -1,3 +1,6 @@
+// latyout 
+import LayoutHome from "../layout/LayoutHome";
+
 // pages
 import Home from "../pages/Home";
 
@@ -7,7 +10,7 @@ import Error404 from "../components/Error404";
 const router = [
     {
         paht: "/",
-        component: Home,
+        component: LayoutHome,
         exact: false,
         routes: [
             {

@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <HashRouter>
         <Switch>
-          {routes.map((route, index) => (console.log(route) ))}
+          {routes.map((route, index) => (<RouteWithSubRoutes key={index} {...route} /> ))}
         </Switch>
       </HashRouter>
     </div>
@@ -16,3 +16,13 @@ function App() {
 }
 
 export default App;
+
+function RouteWithSubRoutes(route){
+  return (
+    <Route 
+      path={route.path}
+      exact={route.exact}
+      render={props => <route.component routes={route.routes} {...props} />}
+    />
+  );
+}

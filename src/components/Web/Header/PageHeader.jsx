@@ -2,11 +2,13 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Layout, Menu } from 'antd';
 
+import "./PageHeader.scss";
+
 const { Header } = Layout
 
 const PageHeader = () => {
   return (
-    <Header>
+    <Header className="menutop">
       <div className="logo">
         {/* Here goes the logo */}
       </div>
@@ -19,4 +21,4 @@ const PageHeader = () => {
   )
 }
 
-export default PageHeader
+export default PageHeader;
