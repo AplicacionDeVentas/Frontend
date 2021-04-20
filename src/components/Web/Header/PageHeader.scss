@@ -6,7 +6,30 @@
     width: 100%;
     background: $primary-color;
 
-    .ant-menu{
-        background: $primary-color;
+    .container {
+        height: inherit;
+        justify-content: space-between;
+        display: flex;
+
+        .ant-menu{
+            background: $primary-color;
+            display: inline-block;
+
+            li {
+                height: inherit;
+            }
+
+            li:hover {
+                background-color: $primary-color-hover;
+            }
+
+            .ant-menu-item-selected {
+                background-color: $secondary-color;
+            }
+        }
+
+        .logo {
+            display: inline-block;
+        }
     }
 }
