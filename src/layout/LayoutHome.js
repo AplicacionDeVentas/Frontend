@@ -7,7 +7,6 @@ import PageFooter from "../components/Web/Footer/Footer";
 
 export default function LayoutHome(props){
     const {routes} = props;
-    console.log(routes);
     return(
         <Layout>
             <PageHeader />

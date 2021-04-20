@@ -1,6 +1,36 @@
+@import "../../../scss/index.scss";
+
 .products{
     margin-top: 64px;
     margin-bottom: 50px;
-    padding: 2em 1em;
-    text-align: center;
+
+    &__title{
+        text-align: center;
+        font-size: 2em;
+        
+        h1 {
+            color: $primary-color;
+            margin: 0.5em 0;
+        }
+    }
+
+    &__items{
+        .ant-col{
+            .ant-card {
+                border-radius: 10px;
+                margin-bottom: 20px;
+
+                .ant-card-cover{
+                    img{
+                        border-top-left-radius: 10px;
+                        border-top-right-radius: 10px;
+                    }
+                }
+
+                .ant-card-body{
+                    padding: 10px;
+                }
+            }
+        }
+    }
 }
