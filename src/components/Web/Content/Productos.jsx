@@ -44,10 +44,10 @@ export default function Productos() {
             </Col>
             <Col lg={3} />
             <Col lg={18}>
-                <Row className="products__items">
+                <Row className="products__items" >
                     {productos.map(item => {
                         return (
-                            <Col md={6} key={item.name}>
+                            <Col  sm={10} md={9} lg={8} xl={6} xxl={6} key={item.name}>
                                 <ItemCard img={item.img} name={item.name} price={item.price} />
                             </Col>
                         )
@@ -65,7 +65,7 @@ function ItemCard(props) {
         <Card 
             hoverable 
             cover={<img alt={`imagen de ${name}`} src={img} />}
-            style={{ width: 240 }}
+            style={{ width: "auto" }}
         >
             <Card.Meta title={name} description={`COP $${price}`} />
         </Card>

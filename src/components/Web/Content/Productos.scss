@@ -1,9 +1,9 @@
 @import "../../../scss/index.scss";
 
 .products{
-    margin-top: 64px;
-    margin-bottom: 50px;
-
+    margin: 64px 10px 50px 10px;
+    justify-content: center;
+    
     &__title{
         text-align: center;
         font-size: 2em;
@@ -15,10 +15,15 @@
     }
 
     &__items{
+        justify-content: center;
+        @media(min-width: $breakpoint-lg){
+            justify-content: start;
+        }
         .ant-col{
+            justify-content: space-between;
+            padding: 6px;
             .ant-card {
                 border-radius: 10px;
-                margin-bottom: 20px;
 
                 .ant-card-cover{
                     img{
