@@ -1,27 +1,40 @@
 @import "../../../scss/index.scss";
 
-.menutop {
+.navbar {
     position: fixed;
     top: 0;
+    // height: 70px;
     width: 100%;
     background: $primary-color;
     padding: 0;
     z-index: 1;
 
-    .container {
+    .ant-row {
+        height: inherit;
+    }
+
+    &__container {
         height: inherit;
         justify-content: space-between;
         display: flex;
 
-        .ant-menu{
+
+        .ant-menu-horizontal{
             background: $primary-color;
             display: inline-block;
 
             li {
-                height: inherit;
+                line-height: inherit;
+                border: none;
             }
 
-            li:hover {
+            &-submenu {
+                border-bottom: none;
+                border-bottom: 2px solid transparent;
+                border-color: white;
+            }
+
+            .ant-menu-item:hover {
                 background-color: $primary-color-hover;
             }
 
@@ -30,8 +43,20 @@
             }
         }
 
-        .logo {
+        &__logo {
             display: inline-block;
+        }
+
+        &__menu {
+            
+            &__icons {
+                display: inline-block;
+
+                a {
+                    margin-left: 2em;
+                    color: $secondary-white;
+                }
+            }
         }
     }
 }
