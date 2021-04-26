@@ -1,7 +1,6 @@
 @import "../../../scss/index.scss";
 
 .products{
-    margin: 64px 10px 50px 10px;
     justify-content: center;
     
     &__title{
@@ -16,6 +15,7 @@
 
     &__items{
         justify-content: center;
+        margin-bottom: 2em;
         @media(min-width: $breakpoint-lg){
             justify-content: start;
         }

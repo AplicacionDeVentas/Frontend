@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import { Layout, Menu, Row, Col } from 'antd';
 import { faShoppingBag, faUser } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../../../Utils/IconButton'
@@ -9,28 +10,36 @@ const { Header } = Layout
 
 const PageHeader = () => {
   return (
-    <Header className="navbar">
+    <Header className="header__home">
       <Row>
-        <Col span={3}></Col>
-        <Col span={18} className="navbar__container">
-          <div className="navbar__container__logo">
-            Miss Maceticas
-          </div>
-          <div className="navbar__container__menu">
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-              <Menu.Item key="1">Inicio</Menu.Item>
-              <Menu.Item key="2">Categorias</Menu.Item>
-              <Menu.Item key="3">PQRS</Menu.Item>
-            </Menu>
-            <div className="navbar__container__menu__icons">
-              <IconButton icon={faUser} size="lg"/>
-              <IconButton icon={faShoppingBag} size="lg"/>
+        <Col span={3} />
+        <Col span={18}>
+
+          <Menu className="navbar__container" mode="horizontal">
+
+            <Menu.Item className="navbar__container__logo">
+              <Link to={"/"}>Miss Maceticas</Link>
+            </Menu.Item>
+
+            <div className="navbar__container__vacio"></div>
+            
+            <Menu.Item key="1" className="navbar__container__item">Inicio</Menu.Item>
+            <Menu.Item key="2" className="navbar__container__item">Categorias</Menu.Item>
+            <Menu.Item key="3" className="navbar__container__item">PQRS</Menu.Item>
+
+            <div className="navbar__container__icons">
+              <IconButton icon={faUser} size="lg" />
+              <IconButton icon={faShoppingBag} size="lg" />
             </div>
-          </div>
+
+          </Menu>
+
         </Col>
-        <Col span={3}></Col>
+        <Col span={3} />
       </Row>
     </Header>
+        
+
   )
 }
 

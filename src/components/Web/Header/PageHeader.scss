@@ -1,61 +1,40 @@
 @import "../../../scss/index.scss";
 
-.navbar {
-    position: fixed;
-    top: 0;
-    // height: 70px;
-    width: 100%;
-    background: $primary-color;
+.header__home{
+    height: 100%;
+    background-color: $primary-color;
     padding: 0;
-    z-index: 1;
 
-    .ant-row {
-        height: inherit;
-    }
-
-    &__container {
-        height: inherit;
-        justify-content: space-between;
+    .navbar__container{
+        border-bottom: none;
+        background-color: $primary-color;
         display: flex;
+        align-items: center;
 
-
-        .ant-menu-horizontal{
-            background: $primary-color;
-            display: inline-block;
-
-            li {
-                line-height: inherit;
-                border: none;
-            }
-
-            &-submenu {
+        .ant-menu-item{
+            margin: 0;
+            top: 0;
+            border-bottom: none;
+            &:hover{
                 border-bottom: none;
-                border-bottom: 2px solid transparent;
-                border-color: white;
-            }
-
-            .ant-menu-item:hover {
-                background-color: $primary-color-hover;
-            }
-
-            .ant-menu-item-selected {
-                background-color: $secondary-color;
             }
         }
 
-        &__logo {
-            display: inline-block;
+        &__vacio{
+            width: 100%;
         }
 
-        &__menu {
-            
-            &__icons {
-                display: inline-block;
+        &__item{
+            margin-right: 1.5em !important;
+        }
 
-                a {
-                    margin-left: 2em;
-                    color: $secondary-white;
-                }
+        &__icons{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            a{
+                margin-left: 1.5em;
+                color: #fff;
             }
         }
     }
