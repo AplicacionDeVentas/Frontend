@@ -10,7 +10,7 @@ const { Header } = Layout
 
 const PageHeader = () => {
   return (
-    <Header className="header__home">
+    <Header className="header__home">      
       <Row>
         <Col span={3} />
         <Col span={18}>
@@ -37,6 +37,9 @@ const PageHeader = () => {
         </Col>
         <Col span={3} />
       </Row>
+
+      <div style={{height: "64px"}}></div>
+      
     </Header>
         
 
