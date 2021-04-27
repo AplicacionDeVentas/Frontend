@@ -11,13 +11,13 @@ const SignUp = () => {
       <div className="signUp-container__form">
         <h1 className="signUp-container__form__title">Registro</h1>
         <form action="">
-          <InputField type="text" placeholder="Nombre(s)"/>
-          <InputField type="text" placeholder="Apellido(s)"/>
+          <InputField type="text" name="name" placeholder="Nombre(s)"/>
+          <InputField type="text" name="lastname" placeholder="Apellido(s)"/>
           <div className="signUp-container__form__row">
-            <InputField type="text" placeholder="Correo"/>
+            <InputField type="email" name="email" placeholder="Correo"/>
           </div>
           <div className="signUp-container__form__row">
-            <InputField type="text" placeholder="Usuario (opcional)"/>
+            <InputField type="text" name="user" placeholder="Usuario (opcional)"/>
           </div>
           <InputField type="password" placeholder="Contraseña"/>
           <InputField type="password" placeholder="Confirmar contraseña"/>

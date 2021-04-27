@@ -1,7 +1,7 @@
 @import '../../../../scss/index.scss';
 
 main {
-    height: 100%;
+    min-height: 87vh;
     display: flex;
     align-items: center;
 }
@@ -49,9 +49,4 @@ main {
         font-size: 3rem;
         margin-bottom: 4vh;
     }
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
 }

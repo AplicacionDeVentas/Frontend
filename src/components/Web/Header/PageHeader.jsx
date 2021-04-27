@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import { Layout, Menu, Row, Col } from 'antd';
-import { faShoppingBag, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBag, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../../../Utils/IconButton'
 
 import "./PageHeader.scss";
@@ -31,9 +31,12 @@ const PageHeader = () => {
             <Menu.Item key="icon1" className="navbar__container__icons" >
               <Link to={"/login"}><IconButton key="icon1" icon={faUser} size="lg" /></Link>
             </Menu.Item>
-            <Menu.Item key="icon2" className="navbar__container__icons" ><IconButton key="icon2" icon={faShoppingBag} size="lg" /></Menu.Item>
-            
-
+            <Menu.Item key="icon2" className="navbar__container__icons" >
+              <IconButton key="icon2" icon={faShoppingBag} size="lg" />
+            </Menu.Item>
+            <Menu.Item key="icon3" className="navbar__container__icons">
+              <IconButton key="icon3" icon={faSearch} size="lg"/>
+            </Menu.Item>
           </Menu>
 
         </Col>
