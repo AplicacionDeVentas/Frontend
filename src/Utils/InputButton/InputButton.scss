@@ -1,0 +1,25 @@
+@import '../../scss/index.scss';
+
+.inputButton {
+    margin: 0 auto;
+    width: 35%;
+    border: 3px solid $secondary-green;
+    border-radius: 15px;
+    margin-bottom: 3vh;
+    color: $secondary-green;
+    transition: 0.3s;
+
+    &__input {
+        background: none;
+        border: none;
+        padding: 0.7em 1.4em;
+        color: inherit;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    &:hover {
+        background: $secondary-green;
+        color: $secondary-white;
+    }
+}

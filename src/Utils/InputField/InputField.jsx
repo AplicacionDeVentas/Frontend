@@ -4,11 +4,13 @@ import './InputField.scss'
 
 const InputField = (props) => {
   return (
-    <div className="newInput">
+    <div className="inputField">
       <input
+        name={props.name}
         type={props.type}
-        className="newInput__input"
+        className="inputField__input"
         placeholder={props.placeholder}
+        autoFocus={!props.autoFocus ? props.autoFocus : 'off'}
       />
     </div>
   )
