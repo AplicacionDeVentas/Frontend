@@ -15,11 +15,11 @@ export default function PageFooter() {
         <Col span={3}></Col>
         <Col className="footer__container" span={18}>
           <div className="footer__legal">
-            <Link>Términos y Condiciones</Link>
+            <Link to="#">Términos y Condiciones</Link>
             <span>•</span>
-            <Link>Política de Privacidad</Link>
+            <Link to="#">Política de Privacidad</Link>
             <span>•</span>
-            <Link>Protección al Consumidor</Link>
+            <Link to="#">Protección al Consumidor</Link>
           </div>
           <div className="footer__social-media">
             <a href="https://www.facebook.com/missmaceticas" target="_blank">

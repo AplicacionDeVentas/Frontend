@@ -3,6 +3,7 @@
 body {
   margin: 0;
   font-family: 'Lexend Deca', sans-serif;
+  font-size: 14px !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
