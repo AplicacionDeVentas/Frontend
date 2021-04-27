@@ -28,8 +28,15 @@
             margin: 0;
             top: 0;
             border-bottom: none;
+            color: $secondary-white;
             &:hover{
                 border-bottom: none;
+            }
+        }
+
+        &__logo{
+            a{
+                color: $secondary-white;
             }
         }
 

@@ -10,7 +10,7 @@ export default function LayoutHome(props){
     return(
         <Layout>
             <PageHeader />
-            <Layout.Content style={{minHeight: "86vh"}} >
+            <Layout.Content style={{minHeight: "87vh"}} >
                 <LoadRoutes routes={routes} />
             </Layout.Content>
             <PageFooter />            
@@ -19,7 +19,7 @@ export default function LayoutHome(props){
 }
 
 function LoadRoutes({routes}){
-
+    
     return (
         <Switch>
             {
