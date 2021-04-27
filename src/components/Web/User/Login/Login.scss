@@ -1,0 +1,25 @@
+@import '../../../../scss/index.scss';
+
+main {
+    height: 100%;
+}
+
+.login {
+    height: 100%;
+
+    &__title {
+        text-align: center;
+        font-size: 2em;
+    }
+    
+    h1 {
+        color: $secondary-color;
+        margin: 0.5em 0;
+        font-size: 3rem;
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
