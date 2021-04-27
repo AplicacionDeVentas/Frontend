@@ -3,6 +3,7 @@ import LayoutHome from "../layout/LayoutHome";
 
 // pages
 import Home from "../pages/Home";
+import Login from "../components/Web/User/Login/Login"
 
 //components
 import Error404 from "../components/Error/Error404";
@@ -16,6 +17,11 @@ const router = [
             {
                 path: "/",
                 component: Home,
+                exact: true
+            },
+            {
+                path: "/login",
+                component: Login,
                 exact: true
             },
             {
