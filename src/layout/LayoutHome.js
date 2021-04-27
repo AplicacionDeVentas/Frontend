@@ -10,7 +10,7 @@ export default function LayoutHome(props){
     return(
         <Layout>
             <PageHeader />
-            <Layout.Content >
+            <Layout.Content style={{minHeight: "86vh"}} >
                 <LoadRoutes routes={routes} />
             </Layout.Content>
             <PageFooter />            

@@ -38,8 +38,8 @@ const PageHeader = () => {
         <Col span={3} />
       </Row>
 
-      <div style={{height: "64px"}}></div>
-      
+      <div></div>
+
     </Header>
         
 
