@@ -18,7 +18,7 @@ const Login = () => {
         <span className="login__oTag">
           ó
         </span>
-        <AnchorButton value="Registrarme"/>
+        <AnchorButton value="Registrarme" href={"/signup"}/>
         <div className="login__forgotPasswd">
           <a href="#">Olvidé mi contraseña</a>
         </div>

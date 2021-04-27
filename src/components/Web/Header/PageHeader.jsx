@@ -28,7 +28,9 @@ const PageHeader = () => {
             <Menu.Item key="2" className="navbar__container__item">Categorias</Menu.Item>
             <Menu.Item key="3"  disabled className="navbar__container__item">PQRS</Menu.Item>
 
-            <Menu.Item key="icon1" className="navbar__container__icons" ><IconButton key="icon1" icon={faUser} size="lg" /></Menu.Item>
+            <Menu.Item key="icon1" className="navbar__container__icons" >
+              <Link to={"/login"}><IconButton key="icon1" icon={faUser} size="lg" /></Link>
+            </Menu.Item>
             <Menu.Item key="icon2" className="navbar__container__icons" ><IconButton key="icon2" icon={faShoppingBag} size="lg" /></Menu.Item>
             
 

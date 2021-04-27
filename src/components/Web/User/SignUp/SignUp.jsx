@@ -29,7 +29,7 @@ const SignUp = () => {
       <span className="signUp-container__oTag">
         ó
       </span>
-      <AnchorButton value="Iniciar Sesion"/>
+      <AnchorButton value="Iniciar Sesion" href={"/login"}/>
     </div>
   )
 }
