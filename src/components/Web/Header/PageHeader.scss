@@ -1,10 +1,13 @@
 @import "../../../scss/index.scss";
 
 .header__home{
-    height: 100%;
+    height: 7vh;
     background-color: $primary-color;
     padding: 0;
 
+    div {
+        height: 7vh;
+    }
     .ant-row{
         position: fixed;
         width: 100%;
