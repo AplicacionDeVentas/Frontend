@@ -1,0 +1,20 @@
+@import "../../../../scss/index.scss";
+
+.imagenes{
+    .ant-carousel{
+        width: 50%;
+        .slick-slider{
+            .slick-dots{
+                li{
+                    margin: 0 10px;
+                    
+                    button{
+                        height: 20px;
+                        border-radius: 10px;
+                        background: $secondary-white;
+                    }
+                }
+            }
+        }
+    }
+}
