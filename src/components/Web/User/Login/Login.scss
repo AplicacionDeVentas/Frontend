@@ -17,6 +17,10 @@ main {
 
     &__form {
         width: 100%;
+
+        .inputField, .inputButton {
+            width: 35%;
+        }
     }
 
     &__oTag {
