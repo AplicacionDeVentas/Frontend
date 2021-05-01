@@ -3,10 +3,10 @@
 .inputButton {
     margin: 0 auto;
     width: 100%;
-    border: 3px solid $secondary-green;
+    border: 3px solid $tertiary-color;
     border-radius: 10px;
     margin-bottom: 3vh;
-    color: $secondary-green;
+    color: $tertiary-color;
     transition: 0.3s;
 
     &__input {
@@ -19,7 +19,7 @@
     }
 
     &:hover {
-        background: $secondary-green;
-        color: $secondary-white;
+        background: $tertiary-color;
+        color: $secondary-color;
     }
 }

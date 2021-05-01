@@ -10,14 +10,14 @@
         text-align: center;
         border-radius: 10px;
         background: $secondary-color;
-        color: $secondary-white;
+        color: $primary-color;
         height: 6vh;
         padding: 1.5vh 0;
         transition: 0.3s;
 
         &:hover {
-            color: $secondary-white-dark;
-            background: $secondary-color-dark;
+            color: $secondary-color-hover;
+            background: $secondary-color-hover;
         }
     }
 }
