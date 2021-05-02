@@ -3,58 +3,67 @@
 .header__home{
     height: 7vh;
     background-color: $primary-color;
-    padding: 0;
+    font-size: 1.5em;
 
-    div {
-        height: 7vh;
-    }
-    .ant-row{
-        position: fixed;
-        width: 100%;
-        z-index: 1;
-        .ant-col{
-            background-color: $primary-color;
-        }
-    }
-
-    .navbar__container{
-        border-bottom: none;
+    .navbar{
         background-color: $primary-color;
+        height: 100%;
         display: flex;
-        align-items: center;
-        height: inherit;
+        
 
-        .ant-menu-item{
-            margin: 0;
-            top: 0;
-            border-bottom: none;
-            color: $secondary-color;
-            &:hover{
-                border-bottom: none;
-            }
+        div{
+            display: flex;
+            align-items: center;
         }
-
-        &__logo{
+        &__logo{            
             a{
                 color: $secondary-color;
             }
         }
 
-        &__vacio{
+        &__search{
             width: 100%;
+            justify-content: center;
+            span{
+                margin: auto 1em;
+                padding: 5px;
+                border-radius: 10px;
+                display: flex;
+                background-color: $optional-color;
+                width: 85%;
+                
+                input{
+                    width: 100%;
+                    border: none;
+                    outline: none;
+                    background-color: $optional-color;
+                    color: $secondary-color;
+                }
+                a{
+                    color: $primary-color;
+                    font-size: .9em;
+                    display: flex;
+                    align-items: center;
+                    cursor: default;
+                }
+
+            }
         }
 
-        &__item{
-            margin-right: 1.5em !important;
-        }
-
-        &__icons{
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
+        &__buttons{
             a{
-                margin-left: 1.5em;
-                color: #fff;
+                color: $secondary-color;
+            }
+            div:first-child{
+                margin-right: 1.5em;
+            }
+            div{
+                a{
+                    padding: 5px;
+                }
+            }
+            &__icons{
+                font-size: .9em;
             }
         }
     }

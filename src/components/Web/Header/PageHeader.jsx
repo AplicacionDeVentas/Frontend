@@ -1,51 +1,47 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import { Layout, Menu, Row, Col } from 'antd';
+import { } from 'antd';
 import { faShoppingBag, faUser, faSearch } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '../../../Utils/IconButton'
 
 import "./PageHeader.scss";
 
-const { Header } = Layout
 
 const PageHeader = () => {
 
   return (
-    <Header className="header__home">      
-      <Row>
-        <Col span={3} />
-        <Col span={18}>
 
-          <Menu className="navbar__container" mode="horizontal">
+    <header className="header__home">      
 
-            <Menu.Item className="navbar__container__logo">
+          <div className="navbar container">
+
+            <div className="navbar__logo">
               <Link to={"/"}><span>Miss Maceticas</span></Link>
-            </Menu.Item>
+            </div>
 
-            <div className="navbar__container__vacio"></div>
+            <div className="navbar__search">
+              <span>                           
+                <input className="search" type="search" ></input>
+                <IconButton icon={faSearch} size="lg"/>   
+              </span>
+            </div>
             
-            <Menu.Item key="1" className="navbar__container__item">Inicio</Menu.Item>
-            <Menu.Item key="2" className="navbar__container__item">Categorias</Menu.Item>
-            <Menu.Item key="3"  disabled className="navbar__container__item">PQRS</Menu.Item>
+            <div className="navbar__buttons">              
+              <div>
+                <a>Inicio</a>
+                <a>Categorias</a>
+                <a>PQRS</a>
+              </div>
 
-            <Menu.Item key="icon1" className="navbar__container__icons" >
-              <Link to={"/login"}><IconButton key="icon1" icon={faUser} size="lg" /></Link>
-            </Menu.Item>
-            <Menu.Item key="icon2" className="navbar__container__icons" >
-              <IconButton key="icon2" icon={faShoppingBag} size="lg" />
-            </Menu.Item>
-            <Menu.Item key="icon3" className="navbar__container__icons">
-              <IconButton key="icon3" icon={faSearch} size="lg"/>
-            </Menu.Item>
-          </Menu>
+              <div className="navbar__buttons__icons">
+                <Link to={"/login"}><IconButton icon={faUser} size="lg" /></Link>
+                <IconButton icon={faShoppingBag} size="lg" />
+              </div>
+            </div>
 
-        </Col>
-        <Col span={3} />
-      </Row>
+          </div>     
 
-      
-
-    </Header>
+    </header>
         
 
   )

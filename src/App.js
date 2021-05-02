@@ -1,7 +1,7 @@
 import {HashRouter, Route, Switch} from "react-router-dom";
 import routes from "./config/Router";
 
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
