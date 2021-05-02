@@ -1,6 +1,5 @@
 import React from "react";
 import {Route, Switch} from "react-router-dom";
-import {Layout} from "antd";
 import PageHeader from "../components/Web/Header/PageHeader";
 import PageFooter from "../components/Web/Footer/Footer";
 
@@ -8,13 +7,13 @@ import PageFooter from "../components/Web/Footer/Footer";
 export default function LayoutHome(props){
     const {routes} = props;
     return(
-        <Layout>
+        <>
             <PageHeader />
-            <Layout.Content style={{minHeight: "87vh"}} >
+            <main>
                 <LoadRoutes routes={routes} />
-            </Layout.Content>
-            <PageFooter />            
-        </Layout>
+            </main>
+            <PageFooter />         
+        </>
     )
 }
 
