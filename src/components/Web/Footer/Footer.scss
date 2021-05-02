@@ -2,6 +2,7 @@
 
 footer {
     background-color: $secondary-color;
+    font-size: 1.2em;
 }
 
 .footer-main {
@@ -12,6 +13,7 @@ footer {
         padding: 50px 10px;
         display: flex;
         flex-wrap: wrap;
+        border-bottom: 1px solid $optional-color-hover;
 
         svg {
             color: $optional-color;
@@ -19,20 +21,32 @@ footer {
         }
 
         .col {
-            padding: 0 0.5vw;
-            min-width: 25%;
+            padding: 0 1em;
+            width: 33%;
+
+            @media (max-width: $breakpoint-xl){
+                width: 33%;
+            }
+            @media (max-width: $breakpoint-lg){
+                width: 50%;
+            }
+            @media (max-width: $breakpoint-md){
+                width: 100%;
+            }
+            @media (max-width: $breakpoint-sm){
+                width: 100%;
+            }
         }
 
         .widget {
             color: $primary-color;
-            margin-bottom: 3vh;
+            margin-bottom: 3em;
 
             a {
                 color: $optional-color;
 
                 &:hover {
                     color: $primary-color;
-                    text-decoration: underline;
                 }
 
                 svg:hover {
@@ -44,37 +58,79 @@ footer {
                 color: $optional-color;
             }
 
+            p {
+                color: $optional-color;
+            }
+
             .widget-title {
                 color: $primary-color;
                 text-transform: uppercase;
+                margin-bottom: 1em;
             }
 
             .widget-list {
                 text-decoration: none;
                 list-style: none;
                 padding: 0;
-                margin-bottom: 1vh;
+                margin-bottom: 1em;
 
                 li {
-                    margin-bottom: 3px;
+                    margin-bottom: 0.7em;
                 }
             }
 
             .share-link {
 
                 svg {
-                    margin-right: 1vw;
+                    margin-right: 0.7em;
                 }
             }
         }
 
         .developer {
-            margin-bottom: 1vh;
+            margin-bottom: 1em;
 
             p {
                 margin: 0;
-                margin-bottom: 1vh;
+                margin-bottom: 0.7em;
             }
+        }
+
+        .newsletter {
+
+            p {
+                line-height: 20px;
+                margin-bottom: 1em;
+            }
+
+            .inputField {
+                margin-bottom: 1em;
+            }
+
+            .inputButton {
+                border: 1px solid transparent;
+                background: $tertiary-color;
+                color: $optional-color;
+
+                &:hover {
+                    background: $tertiary-color-hover;
+                }
+
+                input:disabled {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}
+
+.footer-bottom {
+
+    .container {
+        padding: 30px 10px;
+
+        span {
+            color: $optional-color;
         }
     }
 }

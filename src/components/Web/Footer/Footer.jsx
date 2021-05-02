@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faWhatsapp, faInstagram, faGithub, faTwitter,  } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faWhatsapp, faInstagram, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import IconButton from '../../../Utils/IconButton'
+import InputField from '../../../Utils/InputField/InputField'
+import InputButton from '../../../Utils/InputButton/InputButton'
 
 import "./Footer.scss";
 
@@ -10,7 +13,7 @@ export default function PageFooter() {
   return (
     <footer>
       <div className="footer-main">
-        <div className="footer-main__container">
+        <div className="container">
           <div className="col">
             <aside className="widget contact-info">
               <h3 className="widget-title">Miss Maceticas</h3>
@@ -48,7 +51,7 @@ export default function PageFooter() {
               <div className="developer">
                 <p>Camilo Vargas</p>
                 <div className="share-link">
-                  <IconButton icon={faGithub} size="lg" href="#"/>
+                  <IconButton icon={faGithub} size="lg" href="https://github.com/camilovargas123"/>
                 </div>
               </div>
               <div className="developer">
@@ -61,13 +64,22 @@ export default function PageFooter() {
             </aside>
           </div>
           <div className="col">
-            
+            <aside className="widget newsletter">
+              <h3 className="widget-title">Suscribete a nuestro Newsletter</h3>
+              <p>Suscribete a nuestro newsletter para mantenerte informado sobre nuestras <strong>ofertas,</strong><strong>nuevos productos</strong> y muchos tips sobre los cuidados de tus maceticas!</p>
+              <form action="" className="newsletter-form">
+                <InputField type="text" name="name" placeholder="Nombre"/>
+                <InputField type="email" name="email" placeholder="Correo"/>
+                <InputButton value="Suscribirme"/>
+              </form>
+            </aside>
           </div>
-          <div className="col"></div>
         </div>
       </div>
       <div className="footer-bottom">
-        
+        <div className="container">
+          <span>© copyright 2021. All Rights Reserved.</span>
+        </div>
       </div>
     </footer>
   )
