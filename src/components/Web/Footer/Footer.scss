@@ -7,10 +7,8 @@ footer {
 .footer-main {
     height: 100%;
     margin: 0 auto;
-    width: 85%;
 
-    &__container {
-        max-width: 1200px;
+    .container {
         padding: 50px 10px;
         display: flex;
         flex-wrap: wrap;
