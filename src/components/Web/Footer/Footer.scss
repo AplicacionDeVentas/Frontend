@@ -1,49 +1,82 @@
 @import "../../../scss/index.scss";
 
-.footer {
-    margin: 0;
-    padding: 1em 0;
-    width: 100%;
-    background-color: $primary-color;
-    height: 6vh;
-    display: flex;
-    align-items: center;
+footer {
+    background-color: $secondary-color;
+}
 
-    .ant-row {
-        width: 100%;
-    }
-
-    p {
-        margin: 0;
-    }
-
-    a {
-        color: black;
-        margin: 0;
-    }
+.footer-main {
+    height: 100%;
+    margin: 0 auto;
+    width: 85%;
 
     &__container {
+        max-width: 1200px;
+        padding: 50px 10px;
         display: flex;
-        justify-content: space-between;
-    }
+        flex-wrap: wrap;
 
-    &__legal {
-        width: max-content;
-
-        a {
-            color: $secondary-color;
+        svg {
+            color: $optional-color;
+            transition: 0.3s;
         }
 
-        span {
-            color: $secondary-color;
-            margin: 0 0.5em;
+        .col {
+            padding: 0 0.5vw;
+            min-width: 25%;
         }
-    }
 
-    &__social-media {
-        a {
-            padding-left: 0.5em;
-            color: $secondary-color;
+        .widget {
+            color: $primary-color;
+            margin-bottom: 3vh;
+
+            a {
+                color: $optional-color;
+
+                &:hover {
+                    color: $primary-color;
+                    text-decoration: underline;
+                }
+
+                svg:hover {
+                    color: $primary-color;
+                }
+            }
+
+            span {
+                color: $optional-color;
+            }
+
+            .widget-title {
+                color: $primary-color;
+                text-transform: uppercase;
+            }
+
+            .widget-list {
+                text-decoration: none;
+                list-style: none;
+                padding: 0;
+                margin-bottom: 1vh;
+
+                li {
+                    margin-bottom: 3px;
+                }
+            }
+
+            .share-link {
+
+                svg {
+                    margin-right: 1vw;
+                }
+            }
+        }
+
+        .developer {
+            margin-bottom: 1vh;
+
+            p {
+                margin: 0;
+                margin-bottom: 1vh;
+            }
         }
     }
 }
