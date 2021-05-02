@@ -8,7 +8,9 @@ const InputButton = (props) => {
       <input
         className="inputButton__input"
         type="submit"
-        value={props.value}/>
+        value={props.value}
+        disabled={props.disabled}
+      />
     </div>
   )
 }

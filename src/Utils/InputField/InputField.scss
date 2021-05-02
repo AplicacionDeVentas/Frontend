@@ -3,15 +3,16 @@
 .inputField {
     margin: 0 auto;
     width: 100%;
-    border: 3px solid $secondary-color;
+    border: 1px solid $tertiary-color;
     border-radius: 10px;
     margin-bottom: 3vh;
 
     &__input {
         background: none;
         border: none;
+        border-radius: 10px;
         padding: 0.7em 1.4em;
-        color: $secondary-color;
+        color: $tertiary-color;
         width: 100%;
     }
 
@@ -22,10 +23,10 @@
 }
 
 ::placeholder {
-    color: $secondary-color;
+    color: $tertiary-color;
     opacity: 1;
 }
 
 ::ms-input-placeholder {
-    color: $secondary-color;
+    color: $tertiary-color;
 }

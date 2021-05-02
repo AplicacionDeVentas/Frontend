@@ -10,7 +10,9 @@ const InputField = (props) => {
         type={props.type}
         className="inputField__input"
         placeholder={props.placeholder}
-        autoFocus={!props.autoFocus ? props.autoFocus : 'off'}
+        disabled={props.disabled}
+        autoFocus={props.autoFocus}
+        autoCapitalize={props.autoCapitalize}
       />
     </div>
   )
