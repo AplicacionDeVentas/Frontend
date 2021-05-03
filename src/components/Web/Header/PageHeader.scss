@@ -12,61 +12,65 @@
         background-color: $primary-color;
         height: 100%;
         display: flex;
-        
+        align-items: center;
 
-        div{
-            display: flex;
-            align-items: center;
-        }
         &__logo{            
             a{
                 color: $secondary-color;
             }
         }
 
-        &__search{
-            width: 100%;
-            justify-content: center;
-            span{
-                margin: auto 1em;
-                padding: 5px;
-                border-radius: 10px;
-                display: flex;
-                background-color: $optional-color;
-                width: 85%;
+        &__search{          
+            margin: auto 1em;
+            padding: .3em;
+            border-radius: 10px;
+            display: flex;
+            background-color: $primary-color-hover;
+            width: 100%;                
                 
-                input{
-                    width: 100%;
-                    border: none;
-                    outline: none;
-                    background-color: $optional-color;
-                    color: $secondary-color;
-                }
-                a{
-                    color: $primary-color;
-                    font-size: .9em;
-                    display: flex;
-                    align-items: center;
-                    cursor: default;
-                }
-
-            }
-        }
-
-        &__buttons{
-            a{
+            .search{
+                width: 100%;
+                border: none;
+                outline: none;
+                background-color: $primary-color-hover;
                 color: $secondary-color;
             }
-            div:first-child{
-                margin-right: 1.5em;
+            svg{
+                color: $primary-color;
+                align-items: center;
+                cursor: default;
             }
-            div{
-                a{
-                    padding: 5px;
-                }
-            }
-            &__icons{
-                font-size: .9em;
+        }        
+    }
+
+    label{
+        display: none;
+        align-items: center;
+        transition: .5s;
+        margin-left: 1em;
+        a{
+            color: $secondary-color;
+        }
+        @media(max-width: $breakpoint-md){
+            display: inline-block;
+        }
+    }
+
+
+    .ant-layout-sider{
+        position: absolute;
+        right: 0;
+        top: 7vh;
+        height: 93vh;
+        overflow-y: auto;
+        @media (min-width: $breakpoint-md+1){
+            display: none;
+        }
+        &-children{
+            .ant-menu{
+                background-color: $primary-color-hover;
+                border: none;
+                font-size: 1em;
             }
         }
     }

@@ -1,0 +1,51 @@
+@import "../../../../scss/index.scss";
+
+.navbar__buttons{
+
+    display: inherit;
+    @media(max-width: $breakpoint-md){
+        display: none;
+    }
+
+
+    &__button{
+        display: flex;
+        align-items: center;
+        margin-right: 1em;
+        font-weight: 500;
+        color: $secondary-color;  
+        li{
+            padding: .3em;
+        }
+    }
+
+    
+    
+    &__icons{
+        display: flex;
+        align-items: center;
+        li{
+            padding: .3em;            
+            a{
+                color: $secondary-color;
+            }
+        }
+        .bag{
+            display: flex;
+            padding-right: 0 !important;
+        }
+        .number{
+            position: relative;
+            background: $danger-color;
+            font-size: .8em;
+            right: 3px;
+            top: -3px;
+            text-align: center;
+            color: $primary-color;
+            border-radius: 10px;
+            padding: 2px;
+            height: 100%;
+        }
+    }
+}
+
