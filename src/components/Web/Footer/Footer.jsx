@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faWhatsapp, faInstagram, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import IconButton from '../../../Utils/IconButton'
 import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
@@ -18,13 +17,13 @@ export default function PageFooter() {
               <h3 className="widget-title">Miss Maceticas</h3>
               <ul className="widget-list">
                 <li><strong>Direccion: </strong><span>Transversal 80 #4-12</span></li>
-                <li><strong>Telefono: </strong><span><a href="tel:+573187922804">+57 318 792 2804</a></span></li>
-                <li><strong>Email: </strong><span><a href="mailto:missmaceticas@gmail.com">missmaceticas@gmail.com</a></span></li>
+                <li><strong>Telefono: </strong><span><a href="tel:+573187922804" rel="noreferrer">+57 318 792 2804</a></span></li>
+                <li><strong>Email: </strong><span><a href="mailto:missmaceticas@gmail.com" rel="noreferrer">missmaceticas@gmail.com</a></span></li>
                 <li><strong>Horario: </strong><span>L-V 09.00am - 04.00pm</span></li>
               </ul>
               <FontAwesomeIcon icon={faWhatsapp} size="lg"/>
               <span> Whatsapp: </span>
-              <a href="https://wa.me/573187922804" target="_blank">+57 317 792 2804</a>
+              <a href="https://wa.me/573187922804" target="_blank" rel="noreferrer">+57 317 792 2804</a>
             </aside>
             <aside className="widget follow-us">
               <h3 className="widget-title">Siguenos</h3>
@@ -50,7 +49,7 @@ export default function PageFooter() {
               <div className="developer">
                 <p>Camilo Vargas</p>
                 <div className="share-link">
-                  <a href="https://github.com/camilovargas123" target="_blank" >
+                  <a href="https://github.com/camilovargas123" target="_blank" rel="noreferrer" >
                     <IconButton icon={faGithub} size="lg"/>
                   </a>                  
                 </div>
@@ -58,10 +57,10 @@ export default function PageFooter() {
               <div className="developer">
                 <p>Alex Chirino</p>
                 <div className="share-link">
-                  <a href="https://github.com/apchirinoc" target="_blank" >
+                  <a href="https://github.com/apchirinoc" target="_blank" rel="noreferrer" >
                     <IconButton icon={faGithub} size="lg" />
                   </a>
-                  <a href="https://twitter.com/apchirinoc" target="_blank" >
+                  <a href="https://twitter.com/apchirinoc" target="_blank" rel="noreferrer" >
                     <IconButton icon={faTwitter} size="lg"/>
                   </a>
                 </div>

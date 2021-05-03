@@ -9,7 +9,7 @@ export default function LayoutHome(props){
     return(
         <>
             <PageHeader />
-            <main>
+            <main style={{minHeight: "97vh"}}>
                 <LoadRoutes routes={routes} />
             </main>
             <PageFooter />         

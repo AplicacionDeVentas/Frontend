@@ -2,7 +2,6 @@
 
 .inputButton {
     margin: 0 auto;
-    width: 100%;
     border: 3px solid $tertiary-color;
     border-radius: 10px;
     margin-bottom: 3vh;
@@ -20,6 +19,6 @@
 
     &:hover {
         background: $tertiary-color;
-        color: $secondary-color;
+        color: $primary-color;
     }
 }

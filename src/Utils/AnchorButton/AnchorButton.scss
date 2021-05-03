@@ -2,21 +2,25 @@
 
 .anchorButton {
     margin: 0 auto;
-    width: 15%;
+    width: 30%;
     margin-bottom: 3vh;
+    @media (max-width: $breakpoint-md){
+        width: 50%;
+    }
 
     &__a {
-        display: block;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 10px;
         background: $secondary-color;
         color: $primary-color;
-        height: 6vh;
-        padding: 1.5vh 0;
+        height: 3em;
+        padding: 1em 0;
         transition: 0.3s;
 
         &:hover {
-            color: $secondary-color-hover;
+            color: $primary-color-hover;
             background: $secondary-color-hover;
         }
     }

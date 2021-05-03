@@ -1,17 +1,17 @@
 @import '../../../../scss/index.scss';
 
-main {
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
 .signUp-container {
-    width: 100%;
+    width: 50%;
+    text-align: center;
+    font-size: 1em;    
+    color: $secondary-color;
+    margin: 0 auto;
+    margin-top: 20vh;
+    @media (max-width: $breakpoint-md){
+        margin-top: 10vh;
+    }
 
     &__form {
-        width: 50%;
-        margin: 0 auto;
 
         &__title {
             text-align: center;
