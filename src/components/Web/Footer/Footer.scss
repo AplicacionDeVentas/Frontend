@@ -1,49 +1,136 @@
 @import "../../../scss/index.scss";
 
-.footer {
-    margin: 0;
-    padding: 1em 0;
-    width: 100%;
-    background-color: $primary-color;
-    height: 6vh;
-    display: flex;
-    align-items: center;
+footer {
+    background-color: $secondary-color;
+    font-size: 1.2em;
+}
 
-    .ant-row {
-        width: 100%;
-    }
+.footer-main {
+    height: 100%;
+    margin: 0 auto;
 
-    p {
-        margin: 0;
-    }
-
-    a {
-        color: black;
-        margin: 0;
-    }
-
-    &__container {
+    .container {
+        padding: 50px 10px;
         display: flex;
-        justify-content: space-between;
-    }
+        flex-wrap: wrap;
+        border-bottom: 1px solid $optional-color-hover;
 
-    &__legal {
-        width: max-content;
-
-        a {
-            color: $secondary-color;
+        svg {
+            color: $optional-color;
+            transition: 0.3s;
         }
+
+        .col {
+            padding: 0 1em;
+            width: 33%;
+
+            @media (max-width: $breakpoint-xl){
+                width: 33%;
+            }
+            @media (max-width: $breakpoint-lg){
+                width: 50%;
+            }
+            @media (max-width: $breakpoint-md){
+                width: 100%;
+            }
+            @media (max-width: $breakpoint-sm){
+                width: 100%;
+            }
+        }
+
+        .widget {
+            color: $primary-color;
+            margin-bottom: 3em;
+
+            a {
+                color: $optional-color;
+
+                &:hover {
+                    color: $primary-color;
+                }
+
+                svg:hover {
+                    color: $primary-color;
+                }
+            }
+
+            span {
+                color: $optional-color;
+            }
+
+            p {
+                color: $optional-color;
+            }
+
+            .widget-title {
+                color: $primary-color;
+                text-transform: uppercase;
+                margin-bottom: 1em;
+            }
+
+            .widget-list {
+                text-decoration: none;
+                list-style: none;
+                padding: 0;
+                margin-bottom: 1em;
+
+                li {
+                    margin-bottom: 0.7em;
+                }
+            }
+
+            .share-link {
+
+                svg {
+                    margin-right: 0.7em;
+                }
+            }
+        }
+
+        .developer {
+            margin-bottom: 1em;
+
+            p {
+                margin: 0;
+                margin-bottom: 0.7em;
+            }
+        }
+
+        .newsletter {
+
+            p {
+                line-height: 20px;
+                margin-bottom: 1em;
+            }
+
+            .inputField {
+                margin-bottom: 1em;
+            }
+
+            .inputButton {
+                border: 1px solid transparent;
+                background: $tertiary-color;
+                color: $optional-color;
+
+                &:hover {
+                    background: $tertiary-color-hover;
+                }
+
+                input:disabled {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}
+
+.footer-bottom {
+
+    .container {
+        padding: 30px 10px;
 
         span {
-            color: $secondary-color;
-            margin: 0 0.5em;
-        }
-    }
-
-    &__social-media {
-        a {
-            padding-left: 0.5em;
-            color: $secondary-color;
+            color: $optional-color;
         }
     }
 }
