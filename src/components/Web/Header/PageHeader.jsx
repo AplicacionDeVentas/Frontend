@@ -34,17 +34,7 @@ const PageHeader = () => {
               <IconButton icon={faSearch} />
             </div>
             
-            <MenuButtons change={change} />
-
-            <ul className={"navbar__buttons__icons"}>
-                <li>
-                    <Link to={"/login"}><IconButton icon={faUser} /></Link>
-                </li>
-                <li className="bag">
-                    <IconButton icon={faShoppingBag} />
-                    <span className="number">0</span>
-                </li>                
-            </ul>
+            <MenuButtons change={change} />            
 
             <label>
               <MenuBars change={change} menuResponsive={menuResponsive} />
