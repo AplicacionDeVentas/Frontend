@@ -100,20 +100,23 @@
 .ant-menu-submenu-popup{
     top: 7vh !important;
     & > .ant-menu {
-        background-color: $tertiary-color-hover;
+        background-color: $primary-color-hover;
     }
     .ant-menu-item-only-child{
-        margin: 0;
-        color: $primary-color;
+        margin: 0 !important;
+        color: $secondary-color;
         font-size: 1em;
         &:hover {
-            background-color: $primary-color-hover;
-            color: $tertiary-color-hover;
+            background-color: $tertiary-color-hover;
+            color: $primary-color;
         }
+        &:not(:last-child){
+            border-bottom: 1px solid $tertiary-color-hover;
+        }        
     }
     .ant-menu-item-selected{
-        background-color: $primary-color-hover !important;
-        color: $tertiary-color-hover;
+        background-color: $tertiary-color-hover !important;
+        color: $primary-color;
     }
 }
 

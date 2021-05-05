@@ -79,6 +79,7 @@
             .ant-menu{
                 font-size: 1em;
                 background-color: $primary-color-hover;
+                color: $secondary-color;
 
                 .ant-menu-item:not(:last-child),
                 .ant-menu-submenu:not(:last-child){
