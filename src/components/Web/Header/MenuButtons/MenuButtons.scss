@@ -2,7 +2,10 @@
 
 .navbar__buttons{
 
-    display: inherit;
+    display: inherit;    
+    flex: 2;
+    justify-content: flex-end;
+    height: 100%;
     @media(max-width: $breakpoint-md){
         display: none;
     }
@@ -11,11 +14,62 @@
     &__button{
         display: flex;
         align-items: center;
-        margin-right: 1em;
         font-weight: 500;
-        color: $secondary-color;  
+        color: $secondary-color;
+        text-transform: uppercase;
+        cursor: pointer;
+        height: 100%;
         li{
-            padding: .3em;
+            padding: 0 .5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            svg{
+                margin-left: .3em;
+            }
+
+            .dropdown{
+                position: absolute;
+                top: 100%;
+                width: 8em;
+                background-color: $primary-color-hover;
+                opacity: 0;
+                pointer-events: none;
+                transition: .5s;
+                :not(:last-of-type){
+                    border-bottom: 1px solid $optional-color-hover;
+                }    
+                &__link{
+                    display: flex;
+                    position: relative;
+                    justify-content: space-between;
+                    font-size: .9em;
+                    color: $secondary-color;
+                    padding: .6em 1em;    
+                    transition: .3s;
+                    &:hover{
+                        background-color: $optional-color-hover;
+                    } 
+                    svg{
+                        transform: rotate(-90deg);
+                    }
+                    &:first-child:hover ~ .dropdown__arrow{                        
+                        background-color: $optional-color-hover;
+                    }
+                }
+
+                &__arrow{
+                    position: absolute;
+                    width: 11px;
+                    height: 11px;
+                    top: -5.5px;
+                    left: 4em;
+                    transform: rotate(45deg);
+                    background-color: $primary-color-hover;
+                    transition: .3s;
+                }
+            }
         }
     }
 
@@ -23,9 +77,11 @@
     
     &__icons{
         display: flex;
+        flex: .5;
+        justify-content: flex-end;
         align-items: center;
         li{
-            padding: .3em;            
+            padding: .4em;
             a{
                 color: $secondary-color;
             }
@@ -37,7 +93,7 @@
         .number{
             position: relative;
             background: $danger-color;
-            font-size: .8em;
+            font-size: .7em;
             right: 3px;
             top: -3px;
             text-align: center;
@@ -47,5 +103,23 @@
             height: 100%;
         }
     }
+}
+
+.second{
+    top: 0 !important;
+    left: 100%;
+    padding-left: 1em;
+
+    .dropdown__arrow{
+        top: 10px !important;
+        left: -5.5px !important;
+    }
+}
+
+.navbar__buttons__button li:hover > .dropdown,
+.dropdown__link:hover > .dropdown {
+    transform: translate(0, 0);
+    opacity: 1;
+    pointer-events: auto;
 }
 

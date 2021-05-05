@@ -14,19 +14,22 @@
         display: flex;
         align-items: center;
 
-        &__logo{            
+        &__logo{
+            flex: 1;       
             a{
                 color: $secondary-color;
             }
         }
 
         &__search{          
-            margin: auto 1em;
+            margin: 0 .8em;
             padding: .3em;
             border-radius: 10px;
             display: flex;
             background-color: $primary-color-hover;
-            width: 100%;                
+            width: 100%;
+            align-items: center; 
+            flex: 2;
                 
             .search{
                 width: 100%;
@@ -34,10 +37,10 @@
                 outline: none;
                 background-color: $primary-color-hover;
                 color: $secondary-color;
+                font-size: .9em;
             }
             svg{
                 color: $primary-color;
-                align-items: center;
                 cursor: default;
             }
         }        
@@ -47,7 +50,7 @@
         display: none;
         align-items: center;
         transition: .5s;
-        margin-left: 1em;
+        padding-left: .5em;
         a{
             color: $secondary-color;
         }
@@ -57,21 +60,55 @@
     }
 
 
-    .ant-layout-sider{
+    .navbar-responsive-home{
         position: absolute;
         right: 0;
         top: 7vh;
         height: 93vh;
         overflow-y: auto;
+        background: $primary-color-hover;
         @media (min-width: $breakpoint-md+1){
             display: none;
         }
-        &-children{
-            .ant-menu{
-                background-color: $primary-color-hover;
+
+        .ant-layout-sider-children{
+
+            .ant-menu-inline{
                 border: none;
-                font-size: 1em;
             }
+            .ant-menu{
+                font-size: 1em;
+                background-color: $primary-color-hover;
+
+                .ant-menu-item:not(:last-child),
+                .ant-menu-submenu:not(:last-child){
+                    border-bottom: 1px solid $tertiary-color-hover;
+                }
+
+                .ant-menu-submenu-title:hover {
+                    color: $primary-color;
+                }
+                .ant-menu-submenu-open {
+                    background-color: $tertiary-color-hover;
+                    color: $primary-color;
+                    border-bottom: none !important;
+                    i {
+                        color: $primary-color;
+                    }
+                }
+                .ant-menu-submenu:hover,
+                .ant-menu-item:hover {
+                    background-color: $tertiary-color-hover;
+                    color: $primary-color;
+                    i {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+        .ant-menu-submenu-arrow{
+            transform: none;
         }
     }
 }
+
