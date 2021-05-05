@@ -28,8 +28,12 @@ export default function PageFooter() {
             <aside className="widget follow-us">
               <h3 className="widget-title">Siguenos</h3>
               <div className="share-link">
-                <IconButton icon={faFacebook} size="lg"/>
-                <IconButton icon={faInstagram} size="lg"/>
+                <a href="https://www.facebook.com/missmaceticas" target="_blank" rel="noreferrer">
+                  <IconButton icon={faFacebook} size="lg"/>
+                </a>
+                <a href="https://www.instagram.com/missmaceticas" target="_blank" rel="noreferrer">
+                  <IconButton icon={faInstagram} size="lg"/>
+                </a>
               </div>
             </aside>
           </div>
