@@ -39,3 +39,18 @@ export default function MenuButtons(props) {
         </div>
     )
 }
+
+function menu(){
+    return (
+        <Menu className="container" mode="inline" style={{height: "100%"}}>
+            <Menu.Item key="1" onClick={menuResponsive}>Inicio</Menu.Item>
+            <Menu.SubMenu onClick={menuResponsive} key="sub1" title="Categoria">
+                <Menu.Item key="sub1.1">option1</Menu.Item>
+                <Menu.Item key="sub1.2">option2</Menu.Item>
+                <Menu.Item key="sub1.3">option3</Menu.Item>
+                <Menu.Item key="sub1.4">option4</Menu.Item>
+            </Menu.SubMenu>
+            <Menu.Item key="2" onClick={menuResponsive}>PQRS</Menu.Item>
+        </Menu>
+    )
+}
