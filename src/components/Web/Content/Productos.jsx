@@ -1,11 +1,9 @@
-import React,{useState} from "react";
-import {Card,Row, Col} from "antd";
-import ModalAntd from "../Modal/Modal";
-import ViewItem from "./ViewItem/ViewItem";
+import React from "react";
+import ItemCard from './ItemCard/ItemCard'
 
 import "./Productos.scss";
 
-const productos = [
+const products = [
     {
         _id: 1,
         img: "https://static.vix.com/es/sites/default/files/styles/1x1/public/imj/hogartotal/m/macetas%20eleccion.jpg",
@@ -43,52 +41,16 @@ const productos = [
         price: 20
     }
 ]
-export default function Productos() {
-    const [modalVisible, setModalVisible] = useState(false);
-    const [modalTitle, setModalTitle] = useState("");
-    const [modalContent, setModalContent] = useState(null);
 
-    const viewModal = item => {
-        setModalVisible(true);
-        setModalTitle(item.name);
-        setModalContent(<ViewItem item={item} />);
-    }
-
-    return(
-        <Row className="products">
-            <Col lg={24} className="products__title">
-                <h1>Últimos productos</h1>
-            </Col>
-            <Col lg={3} />
-            <Col lg={18}>
-                <Row className="products__items" >
-                    {productos.map(item => {
-                        return (
-                            <Col  sm={10} md={9} lg={8} xl={6} xxl={6} key={item._id}>
-                                <ItemCard items={item} viewModal={viewModal} />
-                            </Col>
-                        )
-                    })}
-                </Row>
-            </Col>
-            <Col lg={3} />
-            <ModalAntd title={modalTitle} modalVisible={modalVisible} setModalVisible={setModalVisible} width={"80%"} >
-                {modalContent}
-            </ModalAntd>        
-        </Row>
+const Productos = () => {
+    return (
+        <div className="hero-main">
+            <div className="container">
+              <ItemCard srcImg={products[0].img} altImg="Macetica"/>
+            </div>
+        </div>
     )
 }
 
-function ItemCard(props) {
-    const {items, viewModal} = props;
-    return(
-        <Card 
-            hoverable 
-            cover={<img alt={`imagen de ${items.name}`} src={items.img} />}
-            style={{ width: "auto" }}
-            onClick={() => viewModal(items)}
-        >
-            <Card.Meta title={items.name} description={`COP $${items.price}`} />
-        </Card>
-    )
-}
+export default Productos
+
