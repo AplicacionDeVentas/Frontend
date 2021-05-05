@@ -34,17 +34,7 @@ const PageHeader = () => {
               <IconButton icon={faSearch} />
             </div>
             
-            <MenuButtons change={change} />
-
-            <ul className={`navbar__buttons__icons ${change ? "navbar__buttons__responsive__icons" : ""}`}>
-                <li>
-                    <Link to={"/login"}><IconButton icon={faUser} /></Link>
-                </li>
-                <li className="bag">
-                    <IconButton icon={faShoppingBag} />
-                    <span className="number">0</span>
-                </li>                
-            </ul>
+            <MenuButtons change={change} />            
 
             <label>
               <MenuBars change={change} menuResponsive={menuResponsive} />
@@ -67,7 +57,7 @@ function Sider(props){
     <Layout.Sider className="navbar-responsive-home" width="100%" >
       <Menu className="container" mode="inline" style={{height: "100%"}}>
         <Menu.Item key="1" onClick={menuResponsive}>Inicio</Menu.Item>
-        <Menu.SubMenu key="sub1" title="Categoria">
+        <Menu.SubMenu onClick={menuResponsive} key="sub1" title="Categoria">
           <Menu.Item key="sub1.1">option1</Menu.Item>
           <Menu.Item key="sub1.2">option2</Menu.Item>
           <Menu.Item key="sub1.3">option3</Menu.Item>

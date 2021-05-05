@@ -5,72 +5,64 @@
     display: inherit;    
     flex: 2;
     justify-content: flex-end;
+    align-items: center;
     height: 100%;
-    @media(max-width: $breakpoint-md){
-        display: none;
-    }
+    border-bottom: none;
+    line-height: 0;
+    background: none;
+    font-size: inherit;
+    font-weight: 500;
+    text-transform: uppercase;
 
+    
 
-    &__button{
+    .ant-menu-item,
+    .ant-menu-submenu {
+        margin: 0 !important;
+        padding: 0 .5em !important;
+        top: 0;
+        height: 100%;
         display: flex;
         align-items: center;
-        font-weight: 500;
-        color: $secondary-color;
-        text-transform: uppercase;
-        cursor: pointer;
-        height: 100%;
-        li{
-            padding: 0 .5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            svg{
-                margin-left: .3em;
-            }
-
-            .dropdown{
-                position: absolute;
-                top: 100%;
-                width: 8em;
-                background-color: $primary-color-hover;
-                opacity: 0;
-                pointer-events: none;
-                transition: .5s;
-                :not(:last-of-type){
-                    border-bottom: 1px solid $optional-color-hover;
-                }    
-                &__link{
-                    display: flex;
-                    position: relative;
-                    justify-content: space-between;
-                    font-size: .9em;
-                    color: $secondary-color;
-                    padding: .6em 1em;    
-                    transition: .3s;
-                    &:hover{
-                        background-color: $optional-color-hover;
-                    } 
-                    svg{
-                        transform: rotate(-90deg);
-                    }
-                    &:first-child:hover ~ .dropdown__arrow{                        
-                        background-color: $optional-color-hover;
-                    }
-                }
-
-                &__arrow{
-                    position: absolute;
-                    width: 11px;
-                    height: 11px;
-                    top: -5.5px;
-                    left: 4em;
-                    transform: rotate(45deg);
-                    background-color: $primary-color-hover;
-                    transition: .3s;
-                }
-            }
+    }
+    .ant-menu-submenu:hover,
+    .ant-menu-submenu-title:hover {
+        color: $tertiary-color !important;
+        border-bottom-color: $tertiary-color !important;  
+        .ant-menu-submenu-arrow{
+            color: $tertiary-color;
         }
+    }
+    .ant-menu-submenu-title{
+        margin: 0 !important;
+        padding: 0 !important;
+        top: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    .ant-menu-submenu-arrow{
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: auto;
+        margin-left: 10px;
+        top: -5px;
+        right: 0;
+        color: $secondary-color;
+        transform: rotate(90deg);
+    }
+    .ant-menu-item-active,
+    .ant-menu-submenu-active,
+    .ant-menu-submenu-open,
+    .ant-menu-item-selected,
+    .ant-menu-submenu-selected {
+        color: $tertiary-color !important;
+        border-bottom-color: $tertiary-color !important; 
+    }
+
+    @media(max-width: $breakpoint-md){
+        display: none;
     }
 
     
@@ -105,21 +97,23 @@
     }
 }
 
-.second{
-    top: 0 !important;
-    left: 100%;
-    padding-left: 1em;
-
-    .dropdown__arrow{
-        top: 10px !important;
-        left: -5.5px !important;
+.ant-menu-submenu-popup{
+    top: 7vh !important;
+    & > .ant-menu {
+        background-color: $tertiary-color-hover;
     }
-}
-
-.navbar__buttons__button li:hover > .dropdown,
-.dropdown__link:hover > .dropdown {
-    transform: translate(0, 0);
-    opacity: 1;
-    pointer-events: auto;
+    .ant-menu-item-only-child{
+        margin: 0;
+        color: $primary-color;
+        font-size: 1em;
+        &:hover {
+            background-color: $primary-color-hover;
+            color: $tertiary-color-hover;
+        }
+    }
+    .ant-menu-item-selected{
+        background-color: $primary-color-hover !important;
+        color: $tertiary-color-hover;
+    }
 }
 
