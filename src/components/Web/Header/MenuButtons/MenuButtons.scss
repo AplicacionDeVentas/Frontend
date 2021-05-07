@@ -24,6 +24,11 @@
         height: 100%;
         display: flex;
         align-items: center;
+        a {
+            &:hover {
+                color: $tertiary-color;
+            }
+        }
     }
     .ant-menu-submenu:hover,
     .ant-menu-submenu-title:hover {

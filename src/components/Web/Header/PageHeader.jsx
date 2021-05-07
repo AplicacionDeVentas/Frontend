@@ -64,6 +64,7 @@ function Sider(props){
           <Menu.Item key="sub1.4">option4</Menu.Item>
         </Menu.SubMenu>
         <Menu.Item key="2" onClick={menuResponsive}>PQRS</Menu.Item>
+        <Menu.Item key="3" onClick={menuResponsive}><Link to={"/admin"}>Admin</Link></Menu.Item>
       </Menu>
     </Layout.Sider>
   )

@@ -20,6 +20,7 @@ export default function MenuButtons(props) {
                     <Menu.Item key="sub1.4">option4</Menu.Item>
                 </Menu.SubMenu>
                 <Menu.Item key="2">PQRS</Menu.Item>
+                <Menu.Item key="3"><Link to={"/admin"}>Admin</Link></Menu.Item>
             </Menu>
             <ul className={"navbar__buttons__icons"}>
                 <li>

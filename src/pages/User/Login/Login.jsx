@@ -1,7 +1,7 @@
 import React from 'react'
-import InputField from '../../../../Utils/InputField/InputField'
-import InputButton from '../../../../Utils/InputButton/InputButton'
-import AnchorButton from '../../../../Utils/AnchorButton/AnchorButton'
+import InputField from '../../../Utils/InputField/InputField'
+import InputButton from '../../../Utils/InputButton/InputButton'
+import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
 
 import './Login.scss'
 
