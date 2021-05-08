@@ -1,8 +1,8 @@
 @import "./scss/index.scss";
 
 body {
-  font-size: 12px;
-	font-family: 'Lexend', sans-serif;
+  font-size: $defaultFontSize;
+	font-family: $defaultFontFamily;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }

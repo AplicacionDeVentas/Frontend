@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faWhatsapp, faInstagram, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import IconButton from '../../../Utils/IconButton'
 import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
@@ -18,7 +19,7 @@ export default function PageFooter() {
               <ul className="widget-list">
                 <li><strong>Direccion: </strong><span>Transversal 80 #4-12</span></li>
                 <li><strong>Telefono: </strong><span><a href="tel:+573187922804" rel="noreferrer">+57 318 792 2804</a></span></li>
-                <li><strong>Email: </strong><span><a href="mailto:missmaceticas@gmail.com" rel="noreferrer">missmaceticas@gmail.com</a></span></li>
+                <li><strong>Email: </strong><span><a onClick={() => InsertHref(true, "mailto:missmaceticas@gmail.com")} rel="noreferrer">missmaceticas@gmail.com</a></span></li>
                 <li><strong>Horario: </strong><span>L-V 09.00am - 04.00pm</span></li>
               </ul>
               <FontAwesomeIcon icon={faWhatsapp} size="lg"/>
@@ -53,9 +54,12 @@ export default function PageFooter() {
               <div className="developer">
                 <p>Camilo Vargas</p>
                 <div className="share-link">
-                  <a href="https://github.com/camilovargas123" target="_blank" rel="noreferrer" >
+                  <a onClick={() => InsertHref(true, "https://github.com/camilovargas123")} target="_blank" rel="noreferrer" >
                     <IconButton icon={faGithub} size="lg"/>
-                  </a>                  
+                  </a>
+                  <a onClick={() => InsertHref(false, "camilovargasingm@gmail.com")} rel="noreferrer">
+                    <IconButton icon={faEnvelope} size="lg"/>                 
+                  </a>            
                 </div>
               </div>
               <div className="developer">
@@ -91,4 +95,18 @@ export default function PageFooter() {
       </div>
     </footer>
   )
+}
+
+/**
+ * Esta funcion es para evitar el scraping al HTML de la pagina
+ * @param {Booleano} link true para una url. false para un email
+ * @param {String} text correo electronico o URL
+ * @returns open mailto: si es un link false. open new pestaña si es una URL
+ */
+function InsertHref(link, text) {
+  if(link){
+    window.open(text, '_blank')
+  }else{
+    window.location.href = "mailto:"+text
+  }
 }
