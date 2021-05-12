@@ -1,43 +1,49 @@
 import React, {useState} from "react";
-import { Route, Switch} from "react-router-dom";
+import { Route, Switch, Link} from "react-router-dom";
 import {Layout, Menu} from "antd"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faBoxes, faChartPie, faProjectDiagram } from "@fortawesome/free-solid-svg-icons"
+import AdminHeader from "../components/admin/Header/AdminHeader.jsx"
+
+import "./LayoutAdmin.scss"
 
 
 export default function LayoutAdmin(props){
-    const {routes} = props;
+    const {routes, location} = props;
     const [collapsed, setCollapsed] = useState(false);
 
     const toggle = () => {
         setCollapsed(!collapsed);
     }
+
     return(
         <Layout >
-            <Layout.Sider theme="light" collapsible collapsed={collapsed} onCollapse={toggle} style={{ minHeight: '100vh' }}>
-                <div>Logo</div>
-                <Menu defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1" icon={<FontAwesomeIcon icon={faChartPie} />} >General</Menu.Item>
-                    <Menu.Item key="2" icon={<FontAwesomeIcon icon={faBoxes} />} >Pedidos</Menu.Item>
-                    <Menu.Item key="3" icon={<FontAwesomeIcon icon={faProjectDiagram} />} >Productos</Menu.Item>
-                    <Menu.Item key="4" icon={<FontAwesomeIcon icon={faCog} />} >Configuración</Menu.Item>
+            <Layout.Sider theme="light" collapsible collapsed={collapsed} onCollapse={toggle}>
+                <Link to={"/"}>
+                    <div className="logoAdmin">Logo</div>
+                </Link>
+                <Menu defaultSelectedKeys={[location.pathname]} mode="inline">
+                    <Menu.Item key="/admin" icon={<FontAwesomeIcon icon={faChartPie} />} >
+                        <Link to={"/admin"}>General</Link>
+                    </Menu.Item>
+                    <Menu.Item key="/admin/pedidos" icon={<FontAwesomeIcon icon={faBoxes} />} >
+                        <Link to={"/admin/pedidos"}>Pedidos</Link>
+                    </Menu.Item>
+                    <Menu.Item key="/admin/product" icon={<FontAwesomeIcon icon={faProjectDiagram} />} >
+                        <Link to={"/admin/product"}>Productos</Link>
+                    </Menu.Item>
+                    <div className="separador"></div>
+                    <Menu.Item key="/admin/setting" icon={<FontAwesomeIcon icon={faCog} />} >
+                        <Link to={"/admin/setting"}>Configuración</Link>
+                    </Menu.Item>
                 </Menu>
             </Layout.Sider>
 
             <Layout>
-                <Layout.Header style={{padding: 0}}>
-                    <Menu mode="horizontal" >
-                        <Menu.Item key="1" >
-                        Option 1
-                        </Menu.Item>
-                        <Menu.Item key="2" >
-                        Option 2
-                        </Menu.Item>
-                    </Menu>
-                    <Layout.Content style={{ margin: '2em 1.3em', padding: '2em' }}>
-                        <LoadRoutes routes={routes} />
-                    </Layout.Content>
-                </Layout.Header>
+                <AdminHeader />
+                <Layout.Content className="admin__main">
+                    <LoadRoutes routes={routes} />
+                </Layout.Content>
             </Layout>
 
         </Layout>

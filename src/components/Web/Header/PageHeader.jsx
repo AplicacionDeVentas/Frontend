@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import { faSearch, faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Layout, Menu } from 'antd';
 import IconButton from '../../../Utils/IconButton';
 import MenuBars from "./MenuBars/MenuBars";

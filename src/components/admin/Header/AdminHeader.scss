@@ -1,0 +1,72 @@
+@import "../../../scss/index.scss";
+
+.adminheader{
+    padding: 0;
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    background-color: $primary-color;
+
+    &__title{
+        margin-left: 2.5rem;
+    }
+
+    &__menu {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        background-color: $primary-color;
+        margin-right: 2.5rem;
+
+        .ant-menu-item:hover {
+            color: $tertiary-color !important;
+            border-bottom-color: $tertiary-color !important;  
+        }
+        .ant-menu-item-selected {
+            color: $tertiary-color !important;
+            border-bottom-color: $tertiary-color !important;
+        }
+        
+
+        &__notification{
+            padding: 0 1em !important;
+            margin: 0 !important;
+            .number{
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: $danger-color;
+                font-size: .6em;
+                right: 7px;
+                top: 21px;
+                width: 1.3em;
+                height: 1.3em;
+                color: $primary-color;
+                border-radius: 10px;
+                box-shadow: -1px 1px 2px 0 rgb(0 0 0 / 30%);
+            }
+        }
+
+        &__separador{
+            content: "";
+            width: 2px;
+            height: 2.5em;
+            background-color: $optional-color-hover;
+            margin: 0 1em;
+        }
+
+        &__user{
+            margin: 0 !important;
+            div{
+                display: flex;
+                align-items: center;
+                padding: 0 1em;
+                p {
+                    margin-right: 1em;
+                }
+            }         
+        }
+    }
+}
