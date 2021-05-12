@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faWhatsapp, faInstagram, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
+import { faFacebook, faWhatsapp, faInstagram, faGithub, faTwitter, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import IconButton from '../../../Utils/IconButton'
 import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
@@ -57,8 +56,8 @@ export default function PageFooter() {
                   <a onClick={() => InsertHref(true, "https://github.com/camilovargas123")} target="_blank" rel="noreferrer" >
                     <IconButton icon={faGithub} size="lg"/>
                   </a>
-                  <a onClick={() => InsertHref(false, "camilovargasingm@gmail.com")} rel="noreferrer">
-                    <IconButton icon={faEnvelope} size="lg"/>                 
+                  <a onClick={() => InsertHref(true, "https://www.linkedin.com/in/camilovargas123/")} rel="noreferrer">
+                    <IconButton icon={faLinkedin} size="lg"/>                 
                   </a>            
                 </div>
               </div>
@@ -98,7 +97,7 @@ export default function PageFooter() {
 }
 
 /**
- * Esta funcion es para evitar el scraping al HTML de la pagina
+ * Esta funcion es para evitar el scraping de email de la pagina
  * @param {Booleano} link true para una url. false para un email
  * @param {String} text correo electronico o URL
  * @returns open mailto: si es un link false. open new pestaña si es una URL
