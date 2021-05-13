@@ -13,6 +13,7 @@ const PageHeader = () => {
 
   const [change, setChange] = useState(false);
   
+  
   const menuResponsive = () => {
     setChange(!change);
   }
@@ -34,7 +35,7 @@ const PageHeader = () => {
               <IconButton icon={faSearch} />
             </div>
             
-            <MenuButtons change={change} />            
+            <MenuButtons />            
 
             <label>
               <MenuBars change={change} menuResponsive={menuResponsive} />

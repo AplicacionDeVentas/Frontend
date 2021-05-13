@@ -1,0 +1,44 @@
+@import "../../../../scss/index.scss";
+
+.cardcartshopping{
+    position: absolute;
+    top: 7vh;
+    padding: 1em;
+    background-color: $primary-color-hover;
+    font-size: 1rem;
+    right: 12.5%;
+    max-width: 450px;
+  
+    @media (max-width: $breakpoint-xl){
+        right: 10%;
+    }
+    @media (max-width: $breakpoint-lg){
+        right: 7.5%;
+    }
+    @media (max-width: $breakpoint-md){
+        right: 5%;
+    }
+    @media (max-width: $breakpoint-sm){
+        right: 0;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        a {
+            margin-left: 1em;
+        }   
+    }
+
+    &__product {
+        display: flex;
+        align-items: center;
+        margin-right: .5em;
+        
+        img {
+            max-width: 60px;
+        }
+    }
+}
