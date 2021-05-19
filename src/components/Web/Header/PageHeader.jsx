@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import { faSearch, faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Layout, Menu } from 'antd';
 import IconButton from '../../../Utils/IconButton';
 import MenuBars from "./MenuBars/MenuBars";
@@ -12,6 +12,7 @@ import "./PageHeader.scss";
 const PageHeader = () => {
 
   const [change, setChange] = useState(false);
+  
   
   const menuResponsive = () => {
     setChange(!change);
@@ -34,7 +35,7 @@ const PageHeader = () => {
               <IconButton icon={faSearch} />
             </div>
             
-            <MenuButtons change={change} />            
+            <MenuButtons />            
 
             <label>
               <MenuBars change={change} menuResponsive={menuResponsive} />
@@ -64,6 +65,7 @@ function Sider(props){
           <Menu.Item key="sub1.4">option4</Menu.Item>
         </Menu.SubMenu>
         <Menu.Item key="2" onClick={menuResponsive}>PQRS</Menu.Item>
+        <Menu.Item key="3" onClick={menuResponsive}><Link to={"/admin"}>Admin</Link></Menu.Item>
       </Menu>
     </Layout.Sider>
   )

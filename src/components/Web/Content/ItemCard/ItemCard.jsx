@@ -29,11 +29,11 @@ const ItemCard = (props) => {
             <h3 className="product-title">Macetica de Cerdito</h3>
           </Link>
           <div className="rating-wrap">
-            <IconButton icon={faStar} size="mg"/>
-            <IconButton icon={faStar} size="mg"/>
-            <IconButton icon={faStar} size="mg"/>
-            <IconButton icon={faStar} size="mg"/>
-            <IconButton icon={faRegularStar} size="mg"/>
+            <IconButton icon={faStar} size="xs"/>
+            <IconButton icon={faStar} size="xs"/>
+            <IconButton icon={faStar} size="xs"/>
+            <IconButton icon={faStar} size="xs"/>
+            <IconButton icon={faRegularStar} size="xs"/>
           </div>
           <span className="price"><span className="amount"><span className="currency-symbol">COP$</span>20k</span><small> IVA Incluido</small></span>
           <div className="add-links-wrap">

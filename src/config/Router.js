@@ -1,19 +1,36 @@
 // latyout 
-import LayoutHome from "../layout/LayoutHome";
+import LayoutHome from "../layout/LayoutHome.js";
+import LayoutAdmin from "../layout/LayoutAdmin.js";
 
 // pages
 import Home from "../pages/Home";
-import Login from "../components/Web/User/Login/Login"
-import SignUp from "../components/Web/User/SignUp/SignUp"
+import Login from "../pages/User/Login/Login"
+import SignUp from "../pages/User/SignUp/SignUp"
+import AdminHome from "../pages/Admin/AdminHome"
 
 //components
-import Error404 from "../components/Error/Error404";
+import Error404 from "../pages/Error/Error404.jsx";
 
 const router = [
     {
-        paht: "/",
+        path: "/admin",
+        component: LayoutAdmin,
+        exact: false,
+        routes: [
+            {
+                path: "/admin",
+                component: AdminHome,
+                exact: true
+            },
+            {
+                component: Error404
+            }
+        ]
+    },
+    {
+        path: "/",
         component: LayoutHome,
-        exact: true,
+        exact: false,
         routes: [
             {
                 path: "/",

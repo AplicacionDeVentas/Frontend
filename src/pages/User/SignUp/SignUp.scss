@@ -1,17 +1,33 @@
-@import '../../../../scss/index.scss';
+@import '../../../scss/index.scss';
 
 .signUp-container {
-    width: 50%;
-    text-align: center;
-    font-size: 1em;    
-    color: $secondary-color;
-    margin: 0 auto;
-    margin-top: 20vh;
-    @media (max-width: $breakpoint-md){
-        margin-top: 10vh;
-    }
+    display: flex;
+    min-height: 97vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
     &__form {
+        margin-top: -5em;
+        width: 30%;
+        text-align: center;
+        font-size: 1em;    
+        color: $secondary-color;
+        @media (max-width: $breakpoint-xxl){
+            width: 40%;
+        }
+        @media (max-width: $breakpoint-xl){
+            width: 50%;
+        }
+        @media (max-width: $breakpoint-lg){
+            width: 60%;
+        }
+        @media (max-width: $breakpoint-md){
+            width: 70%;
+        }
+        @media (max-width: $breakpoint-sm){
+            width: 80%;
+        }
 
         &__title {
             text-align: center;

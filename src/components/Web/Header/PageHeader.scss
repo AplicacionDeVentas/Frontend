@@ -77,8 +77,18 @@
                 border: none;
             }
             .ant-menu{
+                text-transform: uppercase;
                 font-size: 1em;
                 background-color: $primary-color-hover;
+                color: $secondary-color;
+                a {
+                    &:hover {
+                        color: $primary-color;
+                    }
+                }
+                &-item{
+                    margin-bottom: 4px;
+                }
 
                 .ant-menu-item:not(:last-child),
                 .ant-menu-submenu:not(:last-child){
