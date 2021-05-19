@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import Login from "../pages/User/Login/Login"
 import SignUp from "../pages/User/SignUp/SignUp"
 import AdminHome from "../pages/Admin/AdminHome"
+import UserSetting from "../pages/User/UserSetting/UserSetting.jsx"
 
 //components
 import Error404 from "../pages/Error/Error404.jsx";
@@ -45,6 +46,11 @@ const router = [
             {
                 path: "/signup",
                 component: SignUp,
+                exact: true
+            },
+            {
+                path: "/user-setting",
+                component: UserSetting,
                 exact: true
             },
             {

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import {Link} from "react-router-dom";
 import {InputNumber} from "antd"
 import InputButton from "../../../../Utils/InputButton/InputButton"
@@ -7,9 +7,11 @@ import {faTimes} from "@fortawesome/free-solid-svg-icons"
 
 import "./CardCartshopping.scss"
 
-export default function CardCartshopping(){
+export default function CardCartshopping(props){
+    const {setBagHidden} = props
+
     return (
-        <div className="cardcartshopping">
+        <div className="cardcartshopping" onMouseLeave={() => setBagHidden(false)}>
             <div className="cardcartshopping__header">
                 <span>1 Productos</span>
                 <Link to={"/bag"}>Ver carrito</Link>
