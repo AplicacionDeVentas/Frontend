@@ -42,11 +42,16 @@ const products = [
     }
 ]
 
-const Productos = () => {
+const Productos = (props) => {
     return (
-        <div className="hero-main">
+        <div className={"hero-main " + props.bannerType}>
             <div className="container">
-              <ItemCard srcImg={products[0].img} altImg="Macetica"/>
+                <h1>{props.bannerTitle}</h1>
+              <div className="banner">
+                <ItemCard srcImg={products[0].img} altImg="Macetica"/>
+                <ItemCard srcImg={products[0].img} altImg="Macetica"/>
+                <ItemCard srcImg={products[0].img} altImg="Macetica"/>
+              </div>
             </div>
         </div>
     )
