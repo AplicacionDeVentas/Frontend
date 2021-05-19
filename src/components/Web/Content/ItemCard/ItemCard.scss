@@ -1,2 +1,182 @@
-@import '../../../../scss/index.scss'
+@import '../../../../scss/index.scss';
 
+
+.item-card {
+    position: relative;
+    max-width: 25em;
+    margin-bottom: 0.7em;
+
+    .product-image {
+        margin-bottom: 1em;
+
+        .labels {
+            position: absolute;
+            z-index: 2;
+            text-transform: uppercase;
+            top: 0.6em;
+            left: 0.9em;
+
+            .label {
+                padding: 5px 11px;
+                margin-bottom: 5px;
+                color: $primary-color;
+            }
+
+            .top-rated {
+                background: $tertiary-color;
+            }
+        }
+
+        .image-effect {
+            border-radius: 10px;
+
+            .post-image {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+    }
+
+    .product-content {
+
+        .category-list {
+            display: block;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.85em;
+            color: $optional-color;
+
+            a {
+                color: $optional-color;
+
+                &:hover {
+                    color: $optional-color-hover;
+                }
+            }
+        }
+
+        .product-title-anchor {
+
+            .product-title {
+                line-height: 1.3;
+                text-align: center;
+                font-size: 1.6em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                margin-bottom: 0.3em;
+                color: $secondary-color;
+
+                &:hover {
+                    color: $secondary-color-hover
+                }
+            }
+        }
+
+        .rating-wrap {
+            margin: 0 auto;
+            margin-bottom: 0.5em;
+            width: max-content;
+        }
+
+        .price {
+            display: block;
+            width: max-content;
+            margin: 0 auto;
+            font-size: 1.3em;
+            margin-bottom: 0.7em;
+
+            .amount {
+                font-weight: 600;
+            }
+        }
+
+        .add-links-wrap {
+            text-align: center;
+
+            .clear-fix {
+                display: inline-block;
+                position: relative;
+
+                .add-to-wishlist {
+                    opacity: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transition: 0.25s;
+
+                    .add-to-wishlist-button {
+                        display: inline-block;
+                        padding: 8px;
+                        z-index: 2;
+                        border: 1px solid $optional-color;
+                        color: $secondary-color;
+                    }
+                }
+
+                .quick-view {
+                    opacity: 0;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    transition: 0.25s;
+
+                    .quick-view-button {
+                        display: inline-block;
+                        padding: 8px;
+                        z-index: 2;
+                        border: 1px solid $optional-color;
+                        color: $secondary-color;
+                    }
+                }
+            }
+
+            .add-to-cart-button {
+                display: inline-block;
+                color: $secondary-color;
+                padding: 8px 17px;
+                border: 1px solid $optional-color;
+
+                svg {
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+
+    .card-container {
+
+        &:hover {
+
+            & .quick-view {
+                margin-right: -40px;
+                opacity: 100% !important;
+            }
+
+            & .add-to-wishlist {
+                margin-left: -40px;
+                opacity: 100% !important;
+            }
+
+            & .add-to-cart-button {
+                background: $tertiary-color;
+                color: $primary-color;
+                border: 1px solid $tertiary-color;
+            }
+
+            & .post-image {
+                box-shadow:
+                0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+                0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+                0 12.5px 10px rgba(0, 0, 0, 0.06),
+                0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+                0 41.8px 33.4px rgba(0, 0, 0, 0.086) !important;
+            }
+        }
+    }
+}

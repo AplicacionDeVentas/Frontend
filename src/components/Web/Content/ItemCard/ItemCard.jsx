@@ -16,16 +16,16 @@ const ItemCard = (props) => {
               <div className="top-rated label">
                 NUEVO
               </div>
-              <div className="image-effect">
-                <img src={props.srcImg} alt={props.altImg} className="post-image" height="300" width="300"/>
-                <div className="hover-content" height="300" width="300"/>
-              </div>
+            </div>
+            <div className="image-effect">
+              <img src={props.srcImg} alt={props.altImg} className="post-image"/>
+              <div className="hover-content"/>
             </div>
           </Link>
         </div>
         <div className="product-content">
           <span className="category-list"><Link to="#">Cerdito</Link>, <Link to="#">Rosada</Link>, <Link to="#">Cilindrica</Link></span>
-          <Link to="#">
+          <Link to="#" className="product-title-anchor">
             <h3 className="product-title">Macetica de Cerdito</h3>
           </Link>
           <div className="rating-wrap">
@@ -35,7 +35,7 @@ const ItemCard = (props) => {
             <IconButton icon={faStar} size="xs"/>
             <IconButton icon={faRegularStar} size="xs"/>
           </div>
-          <span className="price"><span className="currency-symbol">COP$</span><span className="amount">20k</span><small> IVA Incluido</small></span>
+          <span className="price"><span className="amount"><span className="currency-symbol">COP$</span>20k</span><small> IVA Incluido</small></span>
           <div className="add-links-wrap">
             <div className="add-links clear-fix">
               <a href="#" className="add-to-cart-button">
@@ -43,10 +43,12 @@ const ItemCard = (props) => {
                 Añadir al carrito
               </a>
               <div className="add-to-wishlist">
-                <a href="#" className="add-to-wishlist-button"><IconButton icon={faHeart} size="lg"/></a>
+                <Link to="#" className="add-to-wishlist-button"><IconButton icon={faHeart} size="lg"/></Link>
               </div>
               <div className="quick-view">
-                <IconButton icon={faExternalLinkAlt} size="lg"/>
+                <Link to ="#" className="quick-view-button">
+                  <IconButton icon={faExternalLinkAlt} size="lg"/>
+                </Link>
               </div>
             </div>
           </div>
