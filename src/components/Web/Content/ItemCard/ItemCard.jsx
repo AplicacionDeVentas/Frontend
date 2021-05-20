@@ -18,15 +18,25 @@ const ItemCard = (props) => {
               </div>
             </div>
             <div className="image-effect">
-              <img src={props.srcImg} alt={props.altImg} className="post-image"/>
+              <img src={props.maceticaImg} alt={props.maceticaAltImg} className="post-image"/>
               <div className="hover-content"/>
             </div>
           </Link>
         </div>
         <div className="product-content">
-          <span className="category-list"><Link to="#">Cerdito</Link>, <Link to="#">Rosada</Link>, <Link to="#">Cilindrica</Link></span>
+          <span className="category-list">
+            {
+              !props.maceticaCategories ?
+              (
+                null
+              ):
+              (
+                props.maceticaCategories.map(name => (<Link to="#">{name} </Link>))
+              )
+            }
+          </span>
           <Link to="#" className="product-title-anchor">
-            <h3 className="product-title">Macetica de Cerdito</h3>
+            <h3 className="product-title">{props.maceticaName}</h3>
           </Link>
           <div className="rating-wrap">
             <IconButton icon={faStar} size="xs"/>
@@ -35,7 +45,7 @@ const ItemCard = (props) => {
             <IconButton icon={faStar} size="xs"/>
             <IconButton icon={faRegularStar} size="xs"/>
           </div>
-          <span className="price"><span className="amount"><span className="currency-symbol">COP$</span>20k</span><small> IVA Incluido</small></span>
+          <span className="price"><span className="amount"><span className="currency-symbol">COP$</span>{props.maceticaPrice}k</span><small> IVA Incluido</small></span>
           <div className="add-links-wrap">
             <div className="add-links clear-fix">
               <a href="#" className="add-to-cart-button">
