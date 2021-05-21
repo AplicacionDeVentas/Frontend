@@ -9,50 +9,6 @@ import './ItemCard.scss'
 
 const ItemCard = (props) => {
 
-  const [categories, setCategories] = useState([]);
-  const [states, setStates] = useState([]);
-
-  useEffect( () => {
-    TransformCategories();
-    TransformStates();
-  }, []);
-
-  const TransformCategories = async() => {
-    const categoriesArray = []
-
-    if (props.maceticaCategories) {
-      props.maceticaCategories.forEach(category => {
-        db.doc(category.path).get().then(snapshotQuery => {
-          categoriesArray.push(snapshotQuery.data().name);
-        }).catch(error => {
-          console.log('Error while fetching data: ' + error)
-        });
-      });
-      setCategories(categoriesArray);
-    } else {
-      console.log('There is no category defined!');
-    }
-  }
-
-  const TransformStates = () => {
-    const statesArray = []
-
-    if (props.maceticaStates) {
-      props.maceticaStates.forEach(state => {
-        db.doc(state.path).get().then(snapshotQuery => {
-          statesArray.push(snapshotQuery.data().name);
-          console.log(statesArray);
-        }).catch(error => {
-          console.log('Error while fetching data:' + error);
-        })
-      });
-      setStates(statesArray);
-      console.log(states);
-    } else {
-      console.log('There is no state defined!');
-    }
-  }
-
   return (
     <div className="item-card">
       <div className="card-container">
@@ -60,9 +16,7 @@ const ItemCard = (props) => {
           <Link to="#">
             <div className="labels">
               {
-                states.map((state, index) => (
-                  <div key={index} className={state == 'Nuevo' ? 'top-rated label' : 'on-sale label'}>{state}</div>
-                ))
+                maceticaNewOrOffer(props.maceticaIsNew, props.maceticaOffer)
               }
             </div>
             <div className="image-effect">
@@ -74,11 +28,11 @@ const ItemCard = (props) => {
         <div className="product-content">
           <span className="category-list">
             {
-              !categories ?
+              !props.maceticaCategories ?
               (
-                <span></span>
+                <span>Sin Categoria</span>
               ):(
-                categories.map((category, index) => (
+                props.maceticaCategories.map((category, index) => (
                   <Link key={index} to="#">{category} </Link>
                 ))
               )
@@ -117,4 +71,14 @@ const ItemCard = (props) => {
   )
 }
 
+function maceticaNewOrOffer(maceticaNew, maceticaOffer) {
+  if(maceticaNew){
+    return (
+      <div className='top-rated label'>Nuevo</div>
+    )
+  }
+  return (
+    <div className='on-sale label'>{`Oferta ${maceticaOffer}%`}</div>
+  )
+}
 export default ItemCard

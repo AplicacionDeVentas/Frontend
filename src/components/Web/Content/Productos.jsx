@@ -4,44 +4,6 @@ import { db } from '../../../config/FirebaseConfig'
 
 import "./Productos.scss";
 
-const products = [
-    {
-        _id: 1,
-        img: "https://static.vix.com/es/sites/default/files/styles/1x1/public/imj/hogartotal/m/macetas%20eleccion.jpg",
-        name: "maceta con dibujo de colibri",
-        price: 20
-    },
-    {
-        _id: 2,
-        img: "https://static.vix.com/es/sites/default/files/styles/1x1/public/imj/hogartotal/m/macetas%20eleccion.jpg",
-        name: "maceta con dibujo de cangrejo",
-        price: 20
-    },
-    {
-        _id: 3,
-        img: "https://static.vix.com/es/sites/default/files/styles/1x1/public/imj/hogartotal/m/macetas%20eleccion.jpg",
-        name: "maceta con dibujo de lobo",
-        price: 20
-    },
-    {
-        _id: 4,
-        img: "https://static.vix.com/es/sites/default/files/styles/1x1/public/imj/hogartotal/m/macetas%20eleccion.jpg",
-        name: "maceta con dibujo de luffy",
-        price: 20
-    },
-    {
-        _id: 5,
-        img: "https://static.vix.com/es/sites/default/files/styles/1x1/public/imj/hogartotal/m/macetas%20eleccion.jpg",
-        name: "maceta con dibujo de goku",
-        price: 20
-    },
-    {
-        _id: 6,
-        img: "https://static.vix.com/es/sites/default/files/styles/1x1/public/imj/hogartotal/m/macetas%20eleccion.jpg",
-        name: "maceta con dibujo de react",
-        price: 20
-    }
-]
 
 const Productos = (props) => {
 
@@ -66,7 +28,7 @@ const Productos = (props) => {
                   {
                       maceticas.length !== 0 ?
                       (
-                        maceticas.map(item => 
+                        maceticas.map(item =>
                             (<ItemCard
                                 key={item.id}
                                 maceticaImg={item.image_url}
@@ -75,7 +37,8 @@ const Productos = (props) => {
                                 maceticaPrice={item.price/1000}
                                 maceticaCategories={item.categories}
                                 maceticaRating={item.rating}
-                                maceticaStates={item.states}
+                                maceticaIsNew={item.isnew}
+                                maceticaOffer={item.offer}
                             />)
                         )
                       ):null
