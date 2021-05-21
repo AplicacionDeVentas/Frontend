@@ -11,7 +11,7 @@ export default function MenuButtons(props) {
     const {  } = props;
     const [numberBag, setNumberBag] = useState(0);
     const [bagHidden, setBagHidden] = useState(false);
-    const [user, setUser] = useState(true);
+    const [userData, setUserData] = useState(true);
     return (
         <>
             <Menu className="navbar__buttons" mode="horizontal">
@@ -27,7 +27,7 @@ export default function MenuButtons(props) {
             </Menu>
             <Menu className="navbar__icons" mode="horizontal">
                 <Menu.Item key="4" className="user-setting" icon={<IconButton icon={faUser} />}>
-                    <Link to={user ? "/user" : "/login"}></Link>
+                    <Link to={userData ? "/user" : "/login"}></Link>
                 </Menu.Item>
                 <Menu.Item key="5" className="bag" icon={<IconButton icon={faShoppingBag} />} onClick={() => setBagHidden(!bagHidden)} onMouseEnter={() => setBagHidden(true)}>
                     <span className="number">{numberBag}</span>                          
