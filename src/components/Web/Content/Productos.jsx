@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ItemCard from './ItemCard/ItemCard'
-import { store } from '../../../config/FirebaseConfig'
+import { db } from '../../../config/FirebaseConfig'
 
 import "./Productos.scss";
 
@@ -52,7 +52,7 @@ const Productos = (props) => {
     }, [])
 
     const GetMaceticas = async() => {
-        const { docs } = await store.collection('maceticas').get()
+        const { docs } = await db.collection('maceticas').get()
         const maceticasArray = docs.map(item => ({id: item.id, ...item.data()}))
         setMaceticas(maceticasArray)
     }
@@ -68,21 +68,18 @@ const Productos = (props) => {
                       (
                         maceticas.map(item => 
                             (<ItemCard
+                                key={item.id}
                                 maceticaImg={item.image_url}
                                 maceticaAltImg={item.name}
                                 maceticaName={item.name}
                                 maceticaPrice={item.price/1000}
                                 maceticaCategories={item.categories}
                                 maceticaRating={item.rating}
+                                maceticaStates={item.states}
                             />)
                         )
                       ):null
                   }
-                <ItemCard maceticaImg={products[0].img} maceticaAltImg="Macetica"/>
-                <ItemCard maceticaImg={products[0].img} maceticaAltImg="Macetica"/>
-                <ItemCard maceticaImg={products[0].img} maceticaAltImg="Macetica"/>
-                <ItemCard maceticaImg={products[0].img} maceticaAltImg="Macetica"/>
-                <ItemCard maceticaImg={products[0].img} maceticaAltImg="Macetica"/>
               </div>
             </div>
         </div>

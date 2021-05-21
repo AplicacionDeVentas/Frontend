@@ -98,7 +98,7 @@ export default function PageFooter() {
 
 /**
  * Esta funcion es para evitar el scraping de email de la pagina
- * @param {Booleano} link true para una url. false para un email
+ * @param {Boolean} link true para una url. false para un email
  * @param {String} text correo electronico o URL
  * @returns open mailto: si es un link false. open new pestaña si es una URL
  */
