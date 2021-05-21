@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ItemCard from './ItemCard/ItemCard'
+import { db } from '../../../config/FirebaseConfig'
 
 import "./Productos.scss";
 
@@ -43,14 +44,42 @@ const products = [
 ]
 
 const Productos = (props) => {
+
+    const [maceticas, setMaceticas] = useState([])
+
+    useEffect( () => {
+        GetMaceticas()
+    }, [])
+
+    const GetMaceticas = async() => {
+        const { docs } = await db.collection('maceticas').get()
+        const maceticasArray = docs.map(item => ({id: item.id, ...item.data()}))
+        setMaceticas(maceticasArray)
+    }
+
     return (
         <div className={"hero-main " + props.bannerType}>
             <div className="container">
-                <h1>{props.bannerTitle}</h1>
+              <h1 className="banner-title">{props.bannerTitle}</h1>
+              <p className="banner-description">{props.bannerDescription}</p>
               <div className="banner">
-                <ItemCard srcImg={products[0].img} altImg="Macetica"/>
-                <ItemCard srcImg={products[0].img} altImg="Macetica"/>
-                <ItemCard srcImg={products[0].img} altImg="Macetica"/>
+                  {
+                      maceticas.length !== 0 ?
+                      (
+                        maceticas.map(item => 
+                            (<ItemCard
+                                key={item.id}
+                                maceticaImg={item.image_url}
+                                maceticaAltImg={item.name}
+                                maceticaName={item.name}
+                                maceticaPrice={item.price/1000}
+                                maceticaCategories={item.categories}
+                                maceticaRating={item.rating}
+                                maceticaStates={item.states}
+                            />)
+                        )
+                      ):null
+                  }
               </div>
             </div>
         </div>
