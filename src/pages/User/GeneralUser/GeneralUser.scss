@@ -1,0 +1,29 @@
+@import "../../../scss/index.scss";
+
+.general-user{    
+    &__welcome {
+        display: flex;
+        font-size: 1.6em;        
+        line-height: 1.2em;
+        color: $primary-color-hover;
+        margin-bottom: 1em;
+        &_name {
+            font-weight: 600;
+            color: $tertiary-color;
+        }
+        p{
+            a{
+                color: $tertiary-color;
+            }
+        }
+    }
+
+    &__info{
+        font-size: 1.3em;
+        color: $primary-color-hover;
+        line-height: 1.4em;
+        a{
+            color: $tertiary-color;
+        }
+    }
+}

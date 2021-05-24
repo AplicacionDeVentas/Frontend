@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import {Switch, Route, Link} from "react-router-dom"
 import {Menu} from "antd"
 import PageHeader from "../components/Web/Header/PageHeader.jsx"
@@ -8,6 +8,11 @@ import "./LayoutUser.scss"
 
 export default function LayoutUser(props) {
     const {routes, location} = props;
+    const [locationPathname, setLocationPathname] = useState(location.pathname)
+
+    useEffect(() => {
+        setLocationPathname(location.pathname)
+    }, [location.pathname])
 
     const Logout = () => {
         console.log("sesion cerrada");
@@ -16,7 +21,7 @@ export default function LayoutUser(props) {
         <>
             <PageHeader />
             <main className="container user">                        
-                <Menu className="user__menu" defaultSelectedKeys={[location.pathname]}>
+                <Menu className="user__menu" selectedKeys={[locationPathname]}>
                     <Menu.Item key="/user">
                         <Link to={"/user"}>General</Link>
                     </Menu.Item>
@@ -33,10 +38,9 @@ export default function LayoutUser(props) {
                         <Link to={"/"}>Cerrar sesion</Link>
                     </Menu.Item>
                 </Menu>
-                
-                <div>
+                <div className="info">
                     <LoadRoutes routes={routes} />
-                </div>
+                </div>                
             </main>
             <PageFooter />
         </>

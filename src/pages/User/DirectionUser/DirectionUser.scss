@@ -1,0 +1,29 @@
+@import "../../../scss/index.scss";
+
+.direction-user {
+    display: flex;
+    flex-direction: column;
+    color: $optional-color-hover;
+    gap: 2em;
+    p{
+        font-size: 1.3em;
+    }
+
+    &__section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5em;
+        h3{
+            color: $tertiary-color;
+            font-size: 2em;
+            font-weight: 600;
+        }
+        span{
+            cursor: pointer;
+            color: $tertiary-color;
+            font-weight: 600;
+            text-align: center;
+        }
+    }
+}

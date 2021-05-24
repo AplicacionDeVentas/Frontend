@@ -12,6 +12,7 @@ export default function MenuButtons(props) {
     const [numberBag, setNumberBag] = useState(0);
     const [bagHidden, setBagHidden] = useState(false);
     const [userData, setUserData] = useState(true);
+    
     return (
         <>
             <Menu className="navbar__buttons" mode="horizontal">
@@ -22,7 +23,7 @@ export default function MenuButtons(props) {
                     <Menu.Item key="sub1.3">option3</Menu.Item>
                     <Menu.Item key="sub1.4">option4</Menu.Item>
                 </Menu.SubMenu>
-                <Menu.Item key="2">PQRS</Menu.Item>
+                <Menu.Item key="2"><Link to={"/pqrs"}>PQRS</Link></Menu.Item>
                 <Menu.Item key="3"><Link to={"/admin"}>Admin</Link></Menu.Item>                               
             </Menu>
             <Menu className="navbar__icons" mode="horizontal">

@@ -13,6 +13,8 @@ const InputField = (props) => {
         disabled={props.disabled}
         autoFocus={props.autoFocus}
         autoCapitalize={props.autoCapitalize}
+        value={props.value}
+        onChange={props.onChange}
       />
     </div>
   )

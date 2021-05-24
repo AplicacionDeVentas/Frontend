@@ -9,7 +9,9 @@ import Login from "../pages/User/Login/Login"
 import SignUp from "../pages/User/SignUp/SignUp"
 import AdminHome from "../pages/Admin/AdminHome"
 import GeneralUser from "../pages/User/GeneralUser/GeneralUser"
-import PedidosUser from "../pages/User/PedidosUser/PedidosUser.jsx"
+import OrderUser from "../pages/User/OrderUser/OrderUser.jsx"
+import DirectionUser from "../pages/User/DirectionUser/DirectionUser.jsx"
+import ConfigUser from "../pages/User/ConfigUser/ConfigUser.jsx"
 
 //components
 import Error404 from "../pages/Error/Error404.jsx";
@@ -42,17 +44,17 @@ const router = [
             },
             {
                 path: "/user/pedidos",
-                component: PedidosUser,
+                component: OrderUser,
                 exact: true
             },
             {
                 path: "/user/direccion",
-                component: Error404,
+                component: DirectionUser,
                 exact: true
             },
             {
                 path: "/user/setting",
-                component: Error404,
+                component: ConfigUser,
                 exact: true
             },
             {
