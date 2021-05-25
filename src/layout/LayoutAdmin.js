@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import { Route, Switch, Link} from "react-router-dom";
+import { Route, Switch, Link, Redirect} from "react-router-dom";
 import {Layout, Menu} from "antd"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faBoxes, faChartPie, faProjectDiagram } from "@fortawesome/free-solid-svg-icons"
 import AdminHeader from "../components/admin/Header/AdminHeader.jsx"
+import useAuth from "../Hooks/UseAuth.js"
 
 import "./LayoutAdmin.scss"
 
@@ -11,12 +12,25 @@ import "./LayoutAdmin.scss"
 export default function LayoutAdmin(props){
     const {routes, location} = props;
     const [collapsed, setCollapsed] = useState(false);
+    var userAdmin = false
 
+    const userData = useAuth()
+
+    if(userData){
+        if(userData.isAdmin){
+            userAdmin = true
+        }else{
+            userAdmin = false
+        }
+    }
+    
     const toggle = () => {
         setCollapsed(!collapsed);
     }
+    
 
     return(
+        userAdmin ?
         <Layout >
             <Layout.Sider theme="light" collapsible collapsed={collapsed} onCollapse={toggle}>
                 <Link to={"/"}>
@@ -47,6 +61,8 @@ export default function LayoutAdmin(props){
             </Layout>
 
         </Layout>
+        :
+        <Redirect to="/" />
     )
 }
 

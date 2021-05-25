@@ -1,24 +1,69 @@
 import React, {useState} from 'react'
+import {Redirect} from "react-router-dom"
 import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
 import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
+import {auth} from "../../../config/FirebaseConfig"
+import useAuth from "../../../Hooks/UseAuth"
 
 import './Login.scss'
 
 const Login = () => {
-  const [credencialUser, setCredencialUser] = useState({
+
+  const [credentialUser, setCredentialUser] = useState({
     email: "",
     password: ""
   })
-  
+  const userData = useAuth()
+
+  const [formInvalid, setFormInvalid] = useState(null)
+
+  const loginIn = e => {
+    e.preventDefault();
+    if(!credentialUser.email || !credentialUser.password){
+      setFormInvalid("Porfavor rellenar todos los campos")
+    }else{
+      auth.signInWithEmailAndPassword(credentialUser.email, credentialUser.password).then(response => {
+        setFormInvalid(null)
+        redic()
+      }).catch(err => {
+        if(err.code === 'auth/invalid-email'){
+          setFormInvalid("Correo electrónico invalido")
+        }
+        if(err.code === 'auth/user-disabled'){
+          setFormInvalid("Lo sentimos, este correo ha sido desabilitado")
+        }
+        if(err.code === 'auth/user-not-found'){
+          setFormInvalid("No existe una cuenta registrada con este correo")
+        }
+        if(err.code === 'auth/wrong-password'){
+          setFormInvalid("Contraseña incorrecta")
+        }
+      })
+    }
+  }
+
+  const redic = () => {
+    return (
+      <Redirect to="/" />
+    )
+  }
+
   return (
+    !userData ? 
     <div className="login">
       <div className="login__form">
         <h1 className="login__form__title">Inicia Sesion</h1>
-        <form action="">
-          <InputField type="text" placeholder="Usuario o correo" autoFocus/>
-          <InputField type="password" placeholder="Contraseña"/>
+        <form onSubmit={loginIn}>
+          <InputField name="email" type="email" placeholder="Usuario o correo" autoFocus onChange={e  => setCredentialUser({...credentialUser, email: e.target.value})}/>
+          <InputField name="password" type="password" placeholder="Contraseña" onChange={e  => setCredentialUser({...credentialUser, password: e.target.value})}/>
           <InputButton value="Iniciar Sesion"/>
+          {
+            formInvalid ? 
+            <p className="invalidForm">{formInvalid}</p>
+            :
+            null
+          }
         </form>
         <span className="login__form__oTag">
           ó
@@ -29,6 +74,8 @@ const Login = () => {
         </div>
       </div>
     </div>
+    :
+    <Redirect to="/" />
   )
 }
 

@@ -53,5 +53,11 @@
                 }
             }
         }
+
+        .invalidForm {
+            margin-bottom: 1.3em;
+            color: $danger-color;
+            grid-column: 1/3;
+        }
     }
 }
