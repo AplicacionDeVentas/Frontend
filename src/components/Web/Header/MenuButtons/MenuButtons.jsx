@@ -11,7 +11,7 @@ export default function MenuButtons(props) {
     const {  } = props;
     const [numberBag, setNumberBag] = useState(0);
     const [bagHidden, setBagHidden] = useState(false);
-    const [userData, setUserData] = useState(true);
+    const [userData, setUserData] = useState(false);
     
     return (
         <>

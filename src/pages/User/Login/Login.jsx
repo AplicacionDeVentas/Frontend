@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
 import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
@@ -6,6 +6,11 @@ import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
 import './Login.scss'
 
 const Login = () => {
+  const [credencialUser, setCredencialUser] = useState({
+    email: "",
+    password: ""
+  })
+  
   return (
     <div className="login">
       <div className="login__form">
