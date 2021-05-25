@@ -3,6 +3,8 @@ import {Switch, Route, Link} from "react-router-dom"
 import {Menu} from "antd"
 import PageHeader from "../components/Web/Header/PageHeader.jsx"
 import PageFooter from "../components/Web/Footer/Footer.jsx"
+import {auth} from "../config/FirebaseConfig"
+import AuthProvider from "../Providers/AuthProviders"
 
 import "./LayoutUser.scss"
 
@@ -15,8 +17,9 @@ export default function LayoutUser(props) {
     }, [location.pathname])
 
     const Logout = () => {
-        console.log("sesion cerrada");
+        auth.signOut()
     }
+
     return (
         <>
             <PageHeader />

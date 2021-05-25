@@ -19,7 +19,6 @@ const SignUp = () => {
 
   const [formInvalid, setFormInvalid] = useState(null)
   const [redirect, setRedirect] = useState(false)
-  console.log(redirect)
   
   const registerUser = e => {   
     e.preventDefault();
@@ -84,7 +83,7 @@ const SignUp = () => {
               :
               null
             }
-            <div type="submit" className="signUp-container__form__row">
+            <div className="signUp-container__form__row">
               <InputButton value="Crear cuenta"/>
             </div>
           </form>
