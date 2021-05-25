@@ -37,7 +37,7 @@ const Productos = (props) => {
                                 maceticaPrice={item.price/1000}
                                 maceticaCategories={item.categories}
                                 maceticaRating={item.rating}
-                                maceticaIsNew={item.isnew}
+                                maceticaIsNew={item.isNew}
                                 maceticaOffer={item.offer}
                             />)
                         )

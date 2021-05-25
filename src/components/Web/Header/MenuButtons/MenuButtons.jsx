@@ -4,6 +4,7 @@ import { faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import {Link} from "react-router-dom";
 import {Menu} from "antd";
 import CardCartshopping from "../CardCartshopping/CardCartshopping"
+import useAuth from "../../../../Hooks/UseAuth"
 
 import "./MenuButtons.scss";
 
@@ -11,7 +12,7 @@ export default function MenuButtons(props) {
     const {  } = props;
     const [numberBag, setNumberBag] = useState(0);
     const [bagHidden, setBagHidden] = useState(false);
-    const [userData, setUserData] = useState(false);
+    const userData = useAuth()
     
     return (
         <>
@@ -24,7 +25,12 @@ export default function MenuButtons(props) {
                     <Menu.Item key="sub1.4">option4</Menu.Item>
                 </Menu.SubMenu>
                 <Menu.Item key="2"><Link to={"/pqrs"}>PQRS</Link></Menu.Item>
-                <Menu.Item key="3"><Link to={"/admin"}>Admin</Link></Menu.Item>                               
+                {
+                    userData.admin ?
+                    <Menu.Item key="3"><Link to={"/admin"}>Admin</Link></Menu.Item>
+                    :
+                    null
+                }                              
             </Menu>
             <Menu className="navbar__icons" mode="horizontal">
                 <Menu.Item key="4" className="user-setting" icon={<IconButton icon={faUser} />}>

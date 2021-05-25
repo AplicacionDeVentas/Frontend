@@ -72,13 +72,23 @@ const ItemCard = (props) => {
 }
 
 function maceticaNewOrOffer(maceticaNew, maceticaOffer) {
-  if(maceticaNew){
-    return (
-      <div className='top-rated label'>Nuevo</div>
-    )
-  }
-  return (
-    <div className='on-sale label'>{`Oferta ${maceticaOffer}%`}</div>
+
+  return(
+    <>
+      {
+        maceticaNew ?
+        <div className='top-rated label'>Nuevo</div>
+        :
+        null
+      }
+      {
+        maceticaOffer ?
+        <div className='on-sale label'>{`Oferta ${maceticaOffer}%`}</div>
+        :
+        null
+      }
+    </>
   )
 }
+
 export default ItemCard

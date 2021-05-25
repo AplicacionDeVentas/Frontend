@@ -32,7 +32,8 @@ const SignUp = () => {
     else{
       auth.createUserWithEmailAndPassword(credentialUser.email, credentialUser.password).then(response => {
         setFormInvalid(null)
-        RegisterUserDb(response.user.uid)
+        registerUserDb(response.user.uid)
+        loginUser(credentialUser.email, credentialUser.password)
         setRedirect(true)
       }).catch(err => {
           if(err.code === 'auth/email-already-in-use'){
@@ -48,13 +49,17 @@ const SignUp = () => {
     }
   }
 
-  const RegisterUserDb = async (uid) => {
+  const registerUserDb = async (uid) => {
     await db.collection('user').doc(uid).set({
       name: credentialUser.name,
       lastname: credentialUser.lastname,
       nickname: credentialUser.nickname,
       email: credentialUser.email
     })
+  }
+
+  const loginUser = async (email, password) => {
+    await auth.signInWithEmailAndPassword(email, password)
   }
 
   return (    

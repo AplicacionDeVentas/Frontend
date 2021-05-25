@@ -12,7 +12,9 @@
     .product-image {
         margin-bottom: 1em;
 
-        .labels {
+        .labels {            
+            display: flex;
+            gap: 1em;
             position: absolute;
             z-index: 2;
             text-transform: uppercase;

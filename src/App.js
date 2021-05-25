@@ -1,17 +1,18 @@
 import {HashRouter, Route, Switch} from "react-router-dom";
 import routes from "./config/Router";
+import AuthProvider from "./Providers/AuthProviders";
 
 import './App.scss';
 
 function App() {
   return (
-    <div className="App">
+    <AuthProvider>
       <HashRouter>
         <Switch>
           {routes.map((route, index) => (<RouteWithSubRoutes key={index} {...route} /> ))}
         </Switch>
       </HashRouter>
-    </div>
+    </AuthProvider>
   );
 }
 
