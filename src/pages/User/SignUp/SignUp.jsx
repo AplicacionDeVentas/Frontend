@@ -4,6 +4,7 @@ import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
 import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
 import {auth, db} from "../../../config/FirebaseConfig"
+import useAuth from "../../../Hooks/UseAuth"
 
 import './SignUp.scss'
 
@@ -15,10 +16,10 @@ const SignUp = () => {
     nickname: "",
     password: "",
     repeatpassword: ""
-  })  
+  })
+  const userData = useAuth()
 
   const [formInvalid, setFormInvalid] = useState(null)
-  const [redirect, setRedirect] = useState(false)
   
   const registerUser = e => {   
     e.preventDefault();
@@ -33,7 +34,6 @@ const SignUp = () => {
         setFormInvalid(null)
         registerUserDb(response.user.uid)
         loginUser(credentialUser.email, credentialUser.password)
-        setRedirect(true)
       }).catch(err => {
           if(err.code === 'auth/email-already-in-use'){
             setFormInvalid("Correo electrónico en uso")
@@ -62,7 +62,7 @@ const SignUp = () => {
   }
 
   return (    
-      !redirect ? 
+      !userData ? 
       <div className="signUp-container">
         <div className="signUp-container__form">
           <h1 className="signUp-container__form__title">Registro</h1>

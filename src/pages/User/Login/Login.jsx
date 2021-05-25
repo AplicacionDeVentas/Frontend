@@ -4,6 +4,7 @@ import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
 import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
 import {auth} from "../../../config/FirebaseConfig"
+import useAuth from "../../../Hooks/UseAuth"
 
 import './Login.scss'
 
@@ -13,9 +14,9 @@ const Login = () => {
     email: "",
     password: ""
   })
+  const userData = useAuth()
 
   const [formInvalid, setFormInvalid] = useState(null)
-  const [redirect, setRedirect] = useState(false)
 
   const loginIn = e => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const Login = () => {
     }else{
       auth.signInWithEmailAndPassword(credentialUser.email, credentialUser.password).then(response => {
         setFormInvalid(null)
-        setRedirect(true)
+        redic()
       }).catch(err => {
         if(err.code === 'auth/invalid-email'){
           setFormInvalid("Correo electrónico invalido")
@@ -42,15 +43,20 @@ const Login = () => {
     }
   }
 
-  
+  const redic = () => {
+    return (
+      <Redirect to="/" />
+    )
+  }
+
   return (
-    !redirect ? 
+    !userData ? 
     <div className="login">
       <div className="login__form">
         <h1 className="login__form__title">Inicia Sesion</h1>
         <form onSubmit={loginIn}>
-          <InputField type="email" placeholder="Usuario o correo" autoFocus onChange={e  => setCredentialUser({...credentialUser, email: e.target.value})}/>
-          <InputField type="password" placeholder="Contraseña" onChange={e  => setCredentialUser({...credentialUser, password: e.target.value})}/>
+          <InputField name="email" type="email" placeholder="Usuario o correo" autoFocus onChange={e  => setCredentialUser({...credentialUser, email: e.target.value})}/>
+          <InputField name="password" type="password" placeholder="Contraseña" onChange={e  => setCredentialUser({...credentialUser, password: e.target.value})}/>
           <InputButton value="Iniciar Sesion"/>
           {
             formInvalid ? 

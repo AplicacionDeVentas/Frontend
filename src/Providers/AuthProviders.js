@@ -6,13 +6,7 @@ export const AuthContext = createContext();
 
 export default function AuthProvider(props) {
     const {children} = props;
-    const [userData, setUserData] = useState({
-        name: "",
-        lastname: "",
-        email: "",
-        nickname: "",
-        isAdmin: false
-    });
+    const [userData, setUserData] = useState(null);
     
 
     useEffect(() => {
@@ -21,13 +15,7 @@ export default function AuthProvider(props) {
                 getDataUser(user.uid)
             }
             else{
-                setUserData({
-                    name: "",
-                    lastname: "",
-                    email: "",
-                    nickname: "",
-                    isAdmin: false
-                })
+                setUserData(null)
             }
         })
     }, [])

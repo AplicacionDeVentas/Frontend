@@ -14,6 +14,15 @@ export default function MenuButtons(props) {
     const [bagHidden, setBagHidden] = useState(false);
     const userData = useAuth()
 
+    var userAdmin = false
+    if(userData){
+        if(userData.isAdmin){
+            userAdmin = true
+        }else{
+            userAdmin = false
+        }
+    }
+
     return (
         <>
             <Menu className="navbar__buttons" mode="horizontal">
@@ -26,7 +35,7 @@ export default function MenuButtons(props) {
                 </Menu.SubMenu>
                 <Menu.Item key="2"><Link to={"/pqrs"}>PQRS</Link></Menu.Item>
                 {
-                    userData.isAdmin ?
+                    userAdmin ?
                     <Menu.Item key="3"><Link to={"/admin"}>Admin</Link></Menu.Item>
                     :
                     null
@@ -34,7 +43,7 @@ export default function MenuButtons(props) {
             </Menu>
             <Menu className="navbar__icons" mode="horizontal">
                 <Menu.Item key="4" className="user-setting" icon={<IconButton icon={faUser} />}>
-                    <Link to={userData.email ? "/user" : "/login"}></Link>
+                    <Link to={!!userData ? "/user" : "/login"}></Link>
                 </Menu.Item>
                 <Menu.Item key="5" className="bag" icon={<IconButton icon={faShoppingBag} />} onClick={() => setBagHidden(!bagHidden)} onMouseEnter={() => setBagHidden(true)}>
                     <span className="number">{numberBag}</span>                          
