@@ -28,9 +28,10 @@ const Productos = (props) => {
                   {
                       maceticas.length !== 0 ?
                       (
-                        maceticas.map(item =>
+                        maceticas.map((item, index) =>
                             (<ItemCard
-                                key={item.id}
+                                key={index}
+                                id={item.id}
                                 maceticaImg={item.image_url}
                                 maceticaAltImg={item.name}
                                 maceticaName={item.name}

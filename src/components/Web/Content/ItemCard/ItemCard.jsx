@@ -3,11 +3,29 @@ import { Link } from 'react-router-dom'
 import { faStar, faShoppingBag, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { faStar as faRegularStar, faHeart } from '@fortawesome/free-regular-svg-icons'
 import IconButton from '../../../../Utils/IconButton'
+import useAuth from "../../../../Hooks/UseAuth"
 import { db } from '../../../../config/FirebaseConfig'
 
 import './ItemCard.scss'
 
 const ItemCard = (props) => {
+
+  const userData = useAuth();
+
+  const saveProductToCart = async(e) => {
+    e.preventDefault();
+    const maceticaDoc = await db.collection('maceticas').doc(props.id).get();
+    const maceticaRef = maceticaDoc.ref;
+    const queryUser = await db.collection('user').where('email', '==', userData.email).get();
+    const userDoc = queryUser.docs[0]
+    const userInfo = userDoc.data();
+    userInfo.cart.push(maceticaRef.path);
+    db.collection('user').doc(userDoc.id).set(userInfo).then( response => {
+      console.log('200 OK');
+    }).catch( err => {
+      console.log('Error while saving the product: ' + err);
+    });
+  }
 
   return (
     <div className="item-card">
@@ -51,7 +69,7 @@ const ItemCard = (props) => {
           <span className="price"><span className="amount"><span className="currency-symbol">COP$</span>{props.maceticaPrice}k</span><small> IVA Incluido</small></span>
           <div className="add-links-wrap">
             <div className="add-links clear-fix">
-              <a href="#" className="add-to-cart-button">
+              <a onClick={saveProductToCart} className="add-to-cart-button">
                 <IconButton icon={faShoppingBag} size="lg"/>
                 Añadir al carrito
               </a>

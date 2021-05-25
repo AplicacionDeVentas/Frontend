@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import IconButton from '../../../../Utils/IconButton';
 import { faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import {Link} from "react-router-dom";
 import {Menu} from "antd";
 import CardCartshopping from "../CardCartshopping/CardCartshopping"
 import useAuth from "../../../../Hooks/UseAuth"
+import { db } from "../../../../config/FirebaseConfig"
 
 import "./MenuButtons.scss";
 
@@ -12,8 +13,32 @@ export default function MenuButtons(props) {
     const {  } = props;
     const [numberBag, setNumberBag] = useState(0);
     const [bagHidden, setBagHidden] = useState(false);
-    const userData = useAuth()
-    
+    const [maceticasPaths, setMaceticasPaths] = useState([]);
+    const userData = useAuth();
+
+    useEffect( () => {
+        getCartProducts();
+    }, [])
+
+    const getCartProducts = async() => {
+        console.log(userData.email);
+        if (userData.email) {
+            const queryUser = await db.collection('user').where('email', '==', userData.email).get();
+            const userQueryDoc = queryUser.docs[0];
+            const userDoc = await db.collection('user').doc(userQueryDoc.id);
+            const observer = userDoc.onSnapshot( docSnapshot => {
+                if (docSnapshot){
+                    const data = docSnapshot.data();
+                    setNumberBag(data.cart.length);
+                    setMaceticasPaths(data.cart);
+                    console.log('a');
+                }
+            }, err => {
+                console.log(`Encountered error: ${err}`);
+            });
+        }
+    }
+
     return (
         <>
             <Menu className="navbar__buttons" mode="horizontal">
@@ -40,7 +65,7 @@ export default function MenuButtons(props) {
                     <span className="number">{numberBag}</span>                          
                 </Menu.Item>                
             </Menu>
-            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} /> : null}
+            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} maceticasPaths={maceticasPaths} /> : null}
         </>
     )
 }
