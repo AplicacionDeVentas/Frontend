@@ -16,14 +16,32 @@ const Login = () => {
   })
   const [formInvalid, setFormInvalid] = useState(null)
   const history = useHistory()
-  const {userData} = useAuth()
+  const {userData, logIn} = useAuth()
   
 
-  const loginIn = e => {
+  async function handleLogIn(e) {
     e.preventDefault();
     if(!credentialUser.email || !credentialUser.password){
-      setFormInvalid("Porfavor rellenar todos los campos")
-    }else{
+      return setFormInvalid("Porfavor rellenar todos los campos")
+    }
+    await logIn(credentialUser.email, credentialUser.password).then(response => {
+      setFormInvalid(null)
+      history.push("/")
+    }).catch(err => {
+      if(err.code === 'auth/invalid-email'){
+        return setFormInvalid("Correo electrónico invalido")
+      }
+      if(err.code === 'auth/user-disabled'){
+        return setFormInvalid("Lo sentimos, este correo ha sido desabilitado")
+      }
+      if(err.code === 'auth/user-not-found'){
+        return setFormInvalid("No existe una cuenta registrada con este correo")
+      }
+      if(err.code === 'auth/wrong-password'){
+        return setFormInvalid("Contraseña incorrecta")
+      }
+    })
+    /* else{
       auth.signInWithEmailAndPassword(credentialUser.email, credentialUser.password).then(response => {
         setFormInvalid(null)
         history.push("/")
@@ -41,13 +59,7 @@ const Login = () => {
           setFormInvalid("Contraseña incorrecta")
         }
       })
-    }
-  }
-
-  const redic = () => {
-    return (
-      <Redirect to="/" />
-    )
+    } */
   }
 
   return (
@@ -55,7 +67,7 @@ const Login = () => {
     <div className="login">
       <div className="login__form">
         <h1 className="login__form__title">Inicia Sesion</h1>
-        <form onSubmit={loginIn}>
+        <form onSubmit={handleLogIn}>
           <InputField name="email" type="email" placeholder="Usuario o correo" autoFocus onChange={e  => setCredentialUser({...credentialUser, email: e.target.value})}/>
           <InputField name="password" type="password" placeholder="Contraseña" onChange={e  => setCredentialUser({...credentialUser, password: e.target.value})}/>
           <InputButton value="Iniciar Sesion"/>
@@ -76,7 +88,7 @@ const Login = () => {
       </div>
     </div>
     :
-    redic()
+    <Redirect to="/" />
   )
 }
 

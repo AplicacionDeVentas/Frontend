@@ -3,7 +3,7 @@ import {Redirect, useHistory} from "react-router-dom"
 import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
 import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
-import {auth, db} from "../../../config/FirebaseConfig"
+import { db } from "../../../config/FirebaseConfig"
 import {useAuth}  from "../../../Providers/AuthProviders"
 
 import './SignUp.scss'
@@ -21,7 +21,7 @@ export default function SignUp() {
   const [formInvalid, setFormInvalid] = useState(null)
   const {userData, singUp} = useAuth()
   const history = useHistory()
-  console.log(userData)
+  console.log(singUp)
   
   async function registerUser(e) {      
     e.preventDefault();
@@ -31,26 +31,24 @@ export default function SignUp() {
     if(credentialUser.password !== credentialUser.repeatpassword){
       return setFormInvalid("Las contraseñas deben coincidir")
     }
-    else {
-      await singUp(credentialUser.email, credentialUser.password).then(response => {
-        setIsLoading(true)
-        setFormInvalid(null)
-        history.push("/")
-        registerUserDb(response.user.uid)
-        // loginUser(credentialUser.email, credentialUser.password)
-      }).catch(err => {
-          setIsLoading(false)
-          if(err.code === 'auth/email-already-in-use'){
-            setFormInvalid("Correo electrónico en uso")
-          }
-          if(err.code === 'auth/invalid-email'){
-            setFormInvalid("Correo electrónico invalido")
-          }
-          if(err.code === 'auth/weak-password'){
-            setFormInvalid("La contraseña debe contener mínimo 6 carácteres")
-          }
-      })
-    }   
+    
+    await singUp(credentialUser.email, credentialUser.password).then(response => {
+      setIsLoading(true)
+      setFormInvalid(null)
+      history.push("/")
+      registerUserDb(response.user.uid)
+    }).catch(err => {
+        setIsLoading(false)
+        if(err.code === 'auth/email-already-in-use'){
+          return setFormInvalid("Correo electrónico en uso")
+        }
+        if(err.code === 'auth/invalid-email'){
+          return setFormInvalid("Correo electrónico invalido")
+        }
+        if(err.code === 'auth/weak-password'){
+          return setFormInvalid("La contraseña debe contener mínimo 6 carácteres")
+        }
+    })
   }
 
   const registerUserDb = async (uid) => {
@@ -62,12 +60,8 @@ export default function SignUp() {
     })
   }
 
-  const loginUser = async (email, password) => {
-    await auth.signInWithEmailAndPassword(email, password)
-  }
-
   return (
-
+    !userData ?
     <div className="signUp-container">
       <div className="signUp-container__form">
         <h1 className="signUp-container__form__title">Registro</h1>
@@ -94,6 +88,7 @@ export default function SignUp() {
 
       </div>      
     </div>
-    
+    :
+    <Redirect to="/" />
   )
 }

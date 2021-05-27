@@ -1,4 +1,4 @@
-import {HashRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, HashRouter, Route, Switch} from "react-router-dom";
 import routes from "./config/Router";
 import {AuthProvider} from "./Providers/AuthProviders";
 

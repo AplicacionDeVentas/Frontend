@@ -16,6 +16,9 @@ export function AuthProvider({children}) {
     const singUp = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password)
     }
+    const logIn = (email, password) => {
+        return auth.signInWithEmailAndPassword(email, password)
+    }
     
 
     useEffect(() => {
@@ -29,7 +32,8 @@ export function AuthProvider({children}) {
     
     const value ={
         userData,
-        singUp: singUp
+        singUp,
+        logIn
     }
     
     console.log(userData)
