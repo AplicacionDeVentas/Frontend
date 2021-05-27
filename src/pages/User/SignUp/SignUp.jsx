@@ -19,9 +19,9 @@ export default function SignUp() {
   })
   const [isLoading, setIsLoading] = useState(false)
   const [formInvalid, setFormInvalid] = useState(null)
-  const authContext = useAuth()
+  const {userData, singUp} = useAuth()
   const history = useHistory()
-  console.log(authContext.singUp)
+  console.log(userData)
   
   async function registerUser(e) {      
     e.preventDefault();
@@ -31,61 +31,36 @@ export default function SignUp() {
     if(credentialUser.password !== credentialUser.repeatpassword){
       return setFormInvalid("Las contraseñas deben coincidir")
     }
-    try {
-      setFormInvalid(null)
-      setIsLoading(true)
-      await authContext.singUp(credentialUser.email, credentialUser.password).then(res => {        
-        console.log("tre")
+    else {
+      await singUp(credentialUser.email, credentialUser.password).then(response => {
+        setIsLoading(true)
+        setFormInvalid(null)
         history.push("/")
-        console.log(res)
-        setIsLoading(false)
+        registerUserDb(response.user.uid)
+        // loginUser(credentialUser.email, credentialUser.password)
       }).catch(err => {
-        console.log("err: "+err)
+          setIsLoading(false)
+          if(err.code === 'auth/email-already-in-use'){
+            setFormInvalid("Correo electrónico en uso")
+          }
+          if(err.code === 'auth/invalid-email'){
+            setFormInvalid("Correo electrónico invalido")
+          }
+          if(err.code === 'auth/weak-password'){
+            setFormInvalid("La contraseña debe contener mínimo 6 carácteres")
+          }
       })
-    } catch (err) {
-      console.log("err")
-      setFormInvalid("falied "+ err)
-      // if(err.code === 'auth/email-already-in-use'){
-      //   setFormInvalid("Correo electrónico en uso")
-      // }
-      // if(err.code === 'auth/invalid-email'){
-      //   setFormInvalid("Correo electrónico invalido")
-      // }
-      // if(err.code === 'auth/weak-password'){
-      //   setFormInvalid("La contraseña debe contener mínimo 6 carácteres")
-      // }
-    }
-    
-
-      // await signUp(credentialUser.email, credentialUser.password).then(response => {
-      //   setIsLoading(true)
-      //   setFormInvalid(null)
-      //   history.push("/")
-      //   // registerUserDb(response.user.uid)
-      //   // loginUser(credentialUser.email, credentialUser.password)
-      // }).catch(err => {
-      //     setIsLoading(false)
-      //     if(err.code === 'auth/email-already-in-use'){
-      //       setFormInvalid("Correo electrónico en uso")
-      //     }
-      //     if(err.code === 'auth/invalid-email'){
-      //       setFormInvalid("Correo electrónico invalido")
-      //     }
-      //     if(err.code === 'auth/weak-password'){
-      //       setFormInvalid("La contraseña debe contener mínimo 6 carácteres")
-      //     }
-      // })
-        
+    }   
   }
 
-  // const registerUserDb = async (uid) => {
-  //   await db.collection('user').doc(uid).set({
-  //     name: credentialUser.name,
-  //     lastname: credentialUser.lastname,
-  //     nickname: credentialUser.nickname,
-  //     email: credentialUser.email
-  //   })
-  // }
+  const registerUserDb = async (uid) => {
+    await db.collection('user').doc(uid).set({
+      name: credentialUser.name,
+      lastname: credentialUser.lastname,
+      nickname: credentialUser.nickname,
+      email: credentialUser.email
+    })
+  }
 
   const loginUser = async (email, password) => {
     await auth.signInWithEmailAndPassword(email, password)
