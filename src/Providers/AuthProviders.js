@@ -10,7 +10,7 @@ export function useAuth() {
 
 export function AuthProvider({children}) {
 
-    const [userData, setUserData] = useState();
+    const [userData, setUserData] = useState(null);
     const [isLoading, setIsLoading] = useState(true)
 
     const singUp = (email, password) => {
@@ -21,9 +21,25 @@ export function AuthProvider({children}) {
     }
     
 
+    const getDataUser = async (uid) => {
+        const docUser = await db.collection('user').doc(uid);
+        const observer = docUser.onSnapshot(docUserSnapshot => {
+            if(docUserSnapshot){
+                return setUserData(docUserSnapshot.data())
+            }
+            return setUserData(null)
+        }, err => {
+            return setUserData(null)
+        })
+    }
+
     useEffect(() => {
         const unsubcriber = auth.onAuthStateChanged(user => {
-            setUserData(user)
+            if(user){
+                getDataUser(user.uid)
+            }else{
+                setUserData(null)
+            }
             setIsLoading(false)
         })
         return unsubcriber
@@ -36,12 +52,6 @@ export function AuthProvider({children}) {
         logIn
     }
     
-    console.log(userData)
-
-    // const getDataUser = async (uid) => {
-    //     const userDataPromesa = await db.collection('user').doc(uid).get();
-    //     setUserData(userDataPromesa.data())
-    // }
 
     return <AuthContext.Provider value={value} >{!isLoading && children}</AuthContext.Provider>
 }

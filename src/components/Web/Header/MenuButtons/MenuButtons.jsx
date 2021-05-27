@@ -9,12 +9,12 @@ import { db } from "../../../../config/FirebaseConfig"
 
 import "./MenuButtons.scss";
 
-export default function MenuButtons(props) {
-    const {  } = props;
-    const [numberBag, setNumberBag] = useState(0);
+export default function MenuButtons() {
+
     const [bagHidden, setBagHidden] = useState(false);
     const [maceticasPaths, setMaceticasPaths] = useState([]);
     const {userData} = useAuth();
+    console.log(userData)
 
     useEffect( () => {
         // getCartProducts();
@@ -28,7 +28,7 @@ export default function MenuButtons(props) {
             const observer = userDoc.onSnapshot( docSnapshot => {
                 if (docSnapshot){
                     const data = docSnapshot.data();
-                    setNumberBag(data.cart.length);
+                    //setNumberBag(data.cart.length);
                     setMaceticasPaths(data.cart);
                     console.log('a');
                 }
@@ -38,14 +38,16 @@ export default function MenuButtons(props) {
         }
     }
 
-    var userAdmin = false
-    if(userData){
-        if(userData.isAdmin){
-            userAdmin = true
-        }else{
-            userAdmin = false
-        }
-    }
+   const numberBag = () => {
+       var number = 0
+       if(userData && userData.cart2){
+           userData.cart2.map(item => {
+               number += item.amount
+           })
+           return number
+       }
+       return number
+   }
 
     return (
         <>
@@ -59,7 +61,7 @@ export default function MenuButtons(props) {
                 </Menu.SubMenu>
                 <Menu.Item key="2"><Link to={"/pqrs"}>PQRS</Link></Menu.Item>
                 {
-                    userAdmin ?
+                    userData && userData.isAdmin ?
                     <Menu.Item key="3"><Link to={"/admin"}>Admin</Link></Menu.Item>
                     :
                     null
@@ -70,7 +72,7 @@ export default function MenuButtons(props) {
                     <Link to={userData ? "/user" : "/login"}></Link>
                 </Menu.Item>
                 <Menu.Item key="5" className="bag" icon={<IconButton icon={faShoppingBag} />} onClick={() => setBagHidden(!bagHidden)} onMouseEnter={() => setBagHidden(true)}>
-                    <span className="number">{numberBag}</span>                          
+                    <span className="number">{numberBag()}</span>                          
                 </Menu.Item>                
             </Menu>
             {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} maceticasPaths={maceticasPaths} /> : null}

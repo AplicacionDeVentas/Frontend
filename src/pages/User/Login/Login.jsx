@@ -3,7 +3,6 @@ import {Redirect, useHistory} from "react-router-dom"
 import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
 import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
-import {auth} from "../../../config/FirebaseConfig"
 import {useAuth} from "../../../Providers/AuthProviders"
 
 import './Login.scss'
@@ -41,25 +40,6 @@ const Login = () => {
         return setFormInvalid("Contraseña incorrecta")
       }
     })
-    /* else{
-      auth.signInWithEmailAndPassword(credentialUser.email, credentialUser.password).then(response => {
-        setFormInvalid(null)
-        history.push("/")
-      }).catch(err => {
-        if(err.code === 'auth/invalid-email'){
-          setFormInvalid("Correo electrónico invalido")
-        }
-        if(err.code === 'auth/user-disabled'){
-          setFormInvalid("Lo sentimos, este correo ha sido desabilitado")
-        }
-        if(err.code === 'auth/user-not-found'){
-          setFormInvalid("No existe una cuenta registrada con este correo")
-        }
-        if(err.code === 'auth/wrong-password'){
-          setFormInvalid("Contraseña incorrecta")
-        }
-      })
-    } */
   }
 
   return (

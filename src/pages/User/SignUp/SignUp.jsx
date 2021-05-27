@@ -21,7 +21,6 @@ export default function SignUp() {
   const [formInvalid, setFormInvalid] = useState(null)
   const {userData, singUp} = useAuth()
   const history = useHistory()
-  console.log(singUp)
   
   async function registerUser(e) {      
     e.preventDefault();
@@ -56,7 +55,8 @@ export default function SignUp() {
       name: credentialUser.name,
       lastname: credentialUser.lastname,
       nickname: credentialUser.nickname,
-      email: credentialUser.email
+      email: credentialUser.email,
+      isAdmin: false
     })
   }
 

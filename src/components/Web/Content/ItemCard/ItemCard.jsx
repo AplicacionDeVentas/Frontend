@@ -9,8 +9,9 @@ import { db } from '../../../../config/FirebaseConfig'
 import './ItemCard.scss'
 
 const ItemCard = (props) => {
-
-  const userData = useAuth();
+  const {id} = props
+  const {userData} = useAuth();
+  console.log(userData)
 
   const saveProductToCart = async(e) => {
     e.preventDefault();
