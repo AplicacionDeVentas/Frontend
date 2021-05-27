@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
-import {Redirect} from "react-router-dom"
+import {Redirect, useHistory} from "react-router-dom"
 import InputField from '../../../Utils/InputField/InputField'
 import InputButton from '../../../Utils/InputButton/InputButton'
 import AnchorButton from '../../../Utils/AnchorButton/AnchorButton'
 import {auth} from "../../../config/FirebaseConfig"
-import useAuth from "../../../Hooks/UseAuth"
+import {useAuth} from "../../../Providers/AuthProviders"
 
 import './Login.scss'
 
@@ -14,9 +14,10 @@ const Login = () => {
     email: "",
     password: ""
   })
-  const userData = useAuth()
-
   const [formInvalid, setFormInvalid] = useState(null)
+  const history = useHistory()
+  const {userData} = useAuth()
+  
 
   const loginIn = e => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const Login = () => {
     }else{
       auth.signInWithEmailAndPassword(credentialUser.email, credentialUser.password).then(response => {
         setFormInvalid(null)
-        redic()
+        history.push("/")
       }).catch(err => {
         if(err.code === 'auth/invalid-email'){
           setFormInvalid("Correo electrónico invalido")
@@ -75,7 +76,7 @@ const Login = () => {
       </div>
     </div>
     :
-    <Redirect to="/" />
+    redic()
   )
 }
 

@@ -4,14 +4,15 @@ import {Menu} from "antd"
 import PageHeader from "../components/Web/Header/PageHeader.jsx"
 import PageFooter from "../components/Web/Footer/Footer.jsx"
 import {auth} from "../config/FirebaseConfig"
-import useAuth from "../Hooks/UseAuth.js"
+import {useAuth} from "../Providers/AuthProviders"
 
 import "./LayoutUser.scss"
 
 export default function LayoutUser(props) {
     const {routes, location} = props;
     const [locationPathname, setLocationPathname] = useState(location.pathname)
-    const userData = useAuth()
+    const {userData} = useAuth()
+    console.log(userData)
 
     useEffect(() => {
         setLocationPathname(location.pathname)
@@ -22,7 +23,7 @@ export default function LayoutUser(props) {
     }
 
     return (
-        !!userData ?
+        userData ?
         <>
             <PageHeader />
             <main className="container user">                        

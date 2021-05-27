@@ -4,7 +4,7 @@ import { faUser, faShoppingBag } from '@fortawesome/free-solid-svg-icons';
 import {Link} from "react-router-dom";
 import {Menu} from "antd";
 import CardCartshopping from "../CardCartshopping/CardCartshopping"
-import useAuth from "../../../../Hooks/UseAuth"
+import {useAuth} from "../../../../Providers/AuthProviders"
 import { db } from "../../../../config/FirebaseConfig"
 
 import "./MenuButtons.scss";
@@ -14,15 +14,14 @@ export default function MenuButtons(props) {
     const [numberBag, setNumberBag] = useState(0);
     const [bagHidden, setBagHidden] = useState(false);
     const [maceticasPaths, setMaceticasPaths] = useState([]);
-    const userData = useAuth();
+    const {userData} = useAuth();
 
     useEffect( () => {
-        getCartProducts();
+        // getCartProducts();
     }, [])
 
     const getCartProducts = async() => {
-        console.log(userData.email);
-        if (userData.email) {
+        if (!!userData) {
             const queryUser = await db.collection('user').where('email', '==', userData.email).get();
             const userQueryDoc = queryUser.docs[0];
             const userDoc = await db.collection('user').doc(userQueryDoc.id);
@@ -64,11 +63,11 @@ export default function MenuButtons(props) {
                     <Menu.Item key="3"><Link to={"/admin"}>Admin</Link></Menu.Item>
                     :
                     null
-                }                              
+                }                       
             </Menu>
             <Menu className="navbar__icons" mode="horizontal">
                 <Menu.Item key="4" className="user-setting" icon={<IconButton icon={faUser} />}>
-                    <Link to={!!userData ? "/user" : "/login"}></Link>
+                    <Link to={userData ? "/user" : "/login"}></Link>
                 </Menu.Item>
                 <Menu.Item key="5" className="bag" icon={<IconButton icon={faShoppingBag} />} onClick={() => setBagHidden(!bagHidden)} onMouseEnter={() => setBagHidden(true)}>
                     <span className="number">{numberBag}</span>                          

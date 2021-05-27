@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { faStar, faShoppingBag, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { faStar as faRegularStar, faHeart } from '@fortawesome/free-regular-svg-icons'
 import IconButton from '../../../../Utils/IconButton'
-import useAuth from "../../../../Hooks/UseAuth"
+import {useAuth} from "../../../../Providers/AuthProviders"
 import { db } from '../../../../config/FirebaseConfig'
 
 import './ItemCard.scss'
