@@ -56,7 +56,9 @@ export default function SignUp() {
       lastname: credentialUser.lastname,
       nickname: credentialUser.nickname,
       email: credentialUser.email,
-      isAdmin: false
+      isAdmin: false,
+      uid: uid,
+      cart: []
     })
   }
 

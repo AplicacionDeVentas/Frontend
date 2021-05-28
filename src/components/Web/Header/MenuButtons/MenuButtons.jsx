@@ -12,42 +12,20 @@ import "./MenuButtons.scss";
 export default function MenuButtons() {
 
     const [bagHidden, setBagHidden] = useState(false);
-    const [maceticasPaths, setMaceticasPaths] = useState([]);
     const {userData} = useAuth();
-    console.log(userData)
 
-    useEffect( () => {
-        // getCartProducts();
-    }, [])
-
-    const getCartProducts = async() => {
-        if (!!userData) {
-            const queryUser = await db.collection('user').where('email', '==', userData.email).get();
-            const userQueryDoc = queryUser.docs[0];
-            const userDoc = await db.collection('user').doc(userQueryDoc.id);
-            const observer = userDoc.onSnapshot( docSnapshot => {
-                if (docSnapshot){
-                    const data = docSnapshot.data();
-                    //setNumberBag(data.cart.length);
-                    setMaceticasPaths(data.cart);
-                    console.log('a');
-                }
-            }, err => {
-                console.log(`Encountered error: ${err}`);
-            });
-        }
-    }
-
+   
    const numberBag = () => {
        var number = 0
-       if(userData && userData.cart2){
-           userData.cart2.map(item => {
-               number += item.amount
-           })
+       if(userData && userData.cart.length>0){
+            userData.cart.map(item => {
+                number += item.amount
+            })
            return number
        }
        return number
    }
+
 
     return (
         <>
@@ -75,7 +53,7 @@ export default function MenuButtons() {
                     <span className="number">{numberBag()}</span>                          
                 </Menu.Item>                
             </Menu>
-            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} maceticasPaths={maceticasPaths} /> : null}
+            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} /> : null}
         </>
     )
 }

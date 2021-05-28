@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { faStar, faShoppingBag, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { faStar as faRegularStar, faHeart } from '@fortawesome/free-regular-svg-icons'
 import IconButton from '../../../../Utils/IconButton'
@@ -9,23 +9,39 @@ import { db } from '../../../../config/FirebaseConfig'
 import './ItemCard.scss'
 
 const ItemCard = (props) => {
-  const {id} = props
-  const {userData} = useAuth();
-  console.log(userData)
+  const history = useHistory()
+  const {userData} = useAuth();  
+  
+  const saveProductToCart = async (uidProduct) => {
+    if(userData && userData.cart){
+      var isNew = false
+      for (let i = 0; i < userData.cart.length; i++) {
+        const product = userData.cart[i];
+        if(product.productPath.id === uidProduct){
+          product.amount += 1
+          break
+        }
+        if(i == userData.cart.length - 1){
+          isNew = true
+          break
+        }
+      }
 
-  const saveProductToCart = async(e) => {
-    e.preventDefault();
-    const maceticaDoc = await db.collection('maceticas').doc(props.id).get();
-    const maceticaRef = maceticaDoc.ref;
-    const queryUser = await db.collection('user').where('email', '==', userData.email).get();
-    const userDoc = queryUser.docs[0]
-    const userInfo = userDoc.data();
-    userInfo.cart.push(maceticaRef.path);
-    db.collection('user').doc(userDoc.id).set(userInfo).then( response => {
-      console.log('200 OK');
-    }).catch( err => {
-      console.log('Error while saving the product: ' + err);
-    });
+      if(userData.cart.length == 0){
+        isNew = true
+      }
+      if(isNew){
+        userData.cart.push({amount: 1, productPath: db.doc(`maceticas/${uidProduct}`)})
+      }
+      await db.collection('user').doc(userData.uid).update(userData).catch(err => {
+        console.log("err"+err)
+      })
+      console.log(userData)
+
+    }
+    else{
+      history.push("/login")
+    }
   }
 
   return (
@@ -70,7 +86,7 @@ const ItemCard = (props) => {
           <span className="price"><span className="amount"><span className="currency-symbol">COP$</span>{props.maceticaPrice}k</span><small> IVA Incluido</small></span>
           <div className="add-links-wrap">
             <div className="add-links clear-fix">
-              <a onClick={saveProductToCart} className="add-to-cart-button">
+              <a onClick={() => saveProductToCart(props.id)} className="add-to-cart-button">
                 <IconButton icon={faShoppingBag} size="lg"/>
                 Añadir al carrito
               </a>
