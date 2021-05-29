@@ -19,7 +19,6 @@ export function AuthProvider({children}) {
     const logIn = (email, password) => {
         return auth.signInWithEmailAndPassword(email, password)
     }
-    
 
     const getDataUser = async (uid) => {
         const docUser = await db.collection('user').doc(uid);
@@ -32,7 +31,7 @@ export function AuthProvider({children}) {
             return setUserData(null)
         })
     }
-
+    
     useEffect(() => {
         const unsubcriber = auth.onAuthStateChanged(user => {
             if(user){

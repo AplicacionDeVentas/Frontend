@@ -4,7 +4,7 @@ import {Layout, Menu} from "antd"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faBoxes, faChartPie, faProjectDiagram } from "@fortawesome/free-solid-svg-icons"
 import AdminHeader from "../components/admin/Header/AdminHeader.jsx"
-import useAuth from "../Hooks/UseAuth.js"
+import {useAuth} from "../Providers/AuthProviders"
 
 import "./LayoutAdmin.scss"
 
@@ -14,7 +14,7 @@ export default function LayoutAdmin(props){
     const [collapsed, setCollapsed] = useState(false);
     var userAdmin = false
 
-    const userData = useAuth()
+    const {userData} = useAuth()
 
     if(userData){
         if(userData.isAdmin){

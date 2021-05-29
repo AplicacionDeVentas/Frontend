@@ -1,26 +1,47 @@
-import React, { useState, useEffect } from "react"
+import React,{useState, useEffect} from "react"
 import {Link} from "react-router-dom";
 import {InputNumber} from "antd"
 import InputButton from "../../../../Utils/InputButton/InputButton"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faTimes} from "@fortawesome/free-solid-svg-icons"
 import {useAuth} from "../../../../Providers/AuthProviders"
-import { db } from '../../../../config/FirebaseConfig'
+import {db} from "../../../../config/FirebaseConfig"
 
 import "./CardCartshopping.scss"
 
 export default function CardCartshopping(props){
 
+    const [bagProducts, setBagProducts] = useState()
     const { setBagHidden } = props
     const {userData} = useAuth()
-
-    const getProducts = async() => {
+    
+    
+    if(userData && userData.cart.length > 0){
+        const productUid = []
+        userData.cart.forEach(item => {
+            productUid.push(item.productPath.id)
+        })
+        console.log(productUid)
     }
+    
+    const getProductsUser = async() => {
+        if(userData && userData.cart.length > 0){
+            userData.cart.forEach(item => {
+                setBagProducts("i"+item.productPath.id)
+            })
+            console.log(bagProducts)
+        }
+    }
+    //await db.collection('maceticas').doc(item.productPath.id).get()
+
+    /* useEffect(() => {
+        getProductsUser()
+    }, [userData]) */
 
     return (
         <div className="cardcartshopping" onMouseLeave={() => setBagHidden(false)}>
             {
-                userData.cart.length > 0 ? 
+                userData && userData.cart.length > 0 ? 
                 <>
                     <div className="cardcartshopping__header">
                         <span>{userData.cart ?  `${userData.cart.length} Productos`: `0 Productos`}</span>
@@ -28,7 +49,6 @@ export default function CardCartshopping(props){
                     </div>
                     {
                         userData.cart.map( (item, index) => (
-                            console.log(item),
                             <ProductBag
                                 key={index}
                                 productName={item.name}

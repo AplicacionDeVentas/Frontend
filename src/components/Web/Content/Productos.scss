@@ -25,14 +25,24 @@
 
 .banner {
     display: flex;
-    justify-content: center;
-    padding: 4em 0;
+    justify-content: left;
+    padding-top: 4em;
+    padding-bottom: 3em;
     overflow-x: auto;
-    overflow-y: hidden;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.banner::-webkit-scrollbar {
-    display: none;
+    min-height: 23em;
+    .items {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        white-space: nowrap;
+    }
+    &::-webkit-scrollbar {
+        height: 1em;
+        background-color: $optional-color;
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: $tertiary-color;
+        border-radius: 10px;
+    }
 }

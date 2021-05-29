@@ -11,9 +11,8 @@ import "./MenuButtons.scss";
 
 export default function MenuButtons() {
 
-    const [bagHidden, setBagHidden] = useState(false);
-    const {userData} = useAuth();
-
+    const [bagHidden, setBagHidden] = useState(false)
+    const {userData} = useAuth()
    
    const numberBag = () => {
        var number = 0
