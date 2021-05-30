@@ -23,7 +23,7 @@ const Login = () => {
     if(!credentialUser.email || !credentialUser.password){
       return setFormInvalid("Porfavor rellenar todos los campos")
     }
-    await logIn(credentialUser.email, credentialUser.password).then(response => {
+    await logIn(credentialUser.email, credentialUser.password).then(() => {
       setFormInvalid(null)
       history.push("/")
     }).catch(err => {

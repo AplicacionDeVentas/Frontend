@@ -12,7 +12,29 @@ import "./MenuButtons.scss";
 export default function MenuButtons() {
 
     const [bagHidden, setBagHidden] = useState(false)
+    const [bagProducts, setBagProducts] = useState(null)
     const {userData} = useAuth()
+
+    useEffect(() => {
+        if(userData && userData.cart){
+            getDataMaceticas(userData.cart)
+        }
+    },[userData])
+
+    const getDataMaceticas = (products) => {
+        var maceticaData = []
+        products.forEach(item => {
+            const maceticaRef = db.collection('maceticas').doc(item.productPath.id).get().then(result => {
+                maceticaData.push({
+                    name: result.data().name,
+                    image_url: result.data().image_url,
+                    price: result.data().price,
+                    quantity: item.amount 
+                })
+            })
+        })
+        setBagProducts(maceticaData)
+    }
    
    const numberBag = () => {
        var number = 0
@@ -52,7 +74,7 @@ export default function MenuButtons() {
                     <span className="number">{numberBag()}</span>                          
                 </Menu.Item>                
             </Menu>
-            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} /> : null}
+            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} bagProducts={bagProducts} /> : null}
         </>
     )
 }

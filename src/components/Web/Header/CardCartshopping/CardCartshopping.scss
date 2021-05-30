@@ -47,6 +47,7 @@
         padding: .9em 0;
         gap: .5em;
         border-bottom: 1px solid $tertiary-color;
+        justify-content: space-between;
 
         span {
             &:last-child{

@@ -1,43 +1,19 @@
-import React,{useState, useEffect} from "react"
+import React from "react"
 import {Link} from "react-router-dom";
 import {InputNumber} from "antd"
 import InputButton from "../../../../Utils/InputButton/InputButton"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faTimes} from "@fortawesome/free-solid-svg-icons"
 import {useAuth} from "../../../../Providers/AuthProviders"
-import {db} from "../../../../config/FirebaseConfig"
 
 import "./CardCartshopping.scss"
 
 export default function CardCartshopping(props){
 
-    const [bagProducts, setBagProducts] = useState()
-    const { setBagHidden } = props
-    const {userData} = useAuth()
+    const { setBagHidden, bagProducts } = props
+    const {userData} = useAuth()  
     
     
-    if(userData && userData.cart.length > 0){
-        const productUid = []
-        userData.cart.forEach(item => {
-            productUid.push(item.productPath.id)
-        })
-        console.log(productUid)
-    }
-    
-    const getProductsUser = async() => {
-        if(userData && userData.cart.length > 0){
-            userData.cart.forEach(item => {
-                setBagProducts("i"+item.productPath.id)
-            })
-            console.log(bagProducts)
-        }
-    }
-    //await db.collection('maceticas').doc(item.productPath.id).get()
-
-    /* useEffect(() => {
-        getProductsUser()
-    }, [userData]) */
-
     return (
         <div className="cardcartshopping" onMouseLeave={() => setBagHidden(false)}>
             {
@@ -48,17 +24,17 @@ export default function CardCartshopping(props){
                         <Link to={"/bag"}>Ver carrito</Link>
                     </div>
                     {
-                        userData.cart.map( (item, index) => (
+                        bagProducts ? bagProducts.map( (item, index) => (
+                            console.log(item),
                             <ProductBag
                                 key={index}
                                 productName={item.name}
-                                productAmount={item.amount}
+                                productAmount={item.quantity}
                                 productImg={item.image_url}
                                 productPrice={item.price}
                             />
-                        ))
-                        
-                        
+                        )):
+                        <div>No data</div>
                     }
                     <div className="cardcartshopping__price">
                         <div>
