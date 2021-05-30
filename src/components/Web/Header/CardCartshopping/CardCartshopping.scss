@@ -97,6 +97,13 @@
                     display: flex;
                 }
             }
+
+        }
+
+        &__price{
+            display: flex;
+            align-items: center;
+            gap: .5em;
         }
 
     }

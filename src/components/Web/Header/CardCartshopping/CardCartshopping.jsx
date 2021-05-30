@@ -13,6 +13,28 @@ export default function CardCartshopping(props){
     const { setBagHidden, bagProducts } = props
     const {userData} = useAuth()  
     
+    const subTotal = () => {
+        var subTotalAux = 0
+        if(bagProducts){
+            bagProducts.map(item => {
+                subTotalAux += item.price * item.quantity
+            })
+            return subTotalAux
+        }
+    }
+    const envio = () => {
+        var envio = 0
+        if(bagProducts){
+            return envio
+        }
+    }
+    const total = () => {
+        var total = 0
+        if(bagProducts){
+            total = subTotal() + envio()
+            return total
+        }
+    }
     
     return (
         <div className="cardcartshopping" onMouseLeave={() => setBagHidden(false)}>
@@ -39,15 +61,15 @@ export default function CardCartshopping(props){
                     <div className="cardcartshopping__price">
                         <div>
                             <span>Subtotal:</span>
-                            <span>COP${400}</span>
+                            <span>COP ${subTotal()}</span>
                         </div>
                         <div>
                             <span>Envio:</span>
-                            <span>COP$5.750</span>
+                            <span>{envio() == 0 ? "Sin definir" : envio()}</span>
                         </div>
                         <div>
                             <span>Total:</span>
-                            <span>COP${400}</span>
+                            <span>COP ${total()}</span>
                         </div>
                     </div>
                     <InputButton value="Realizar pago" />
@@ -76,8 +98,10 @@ function ProductBag(props) {
                     <p>Borrar producto</p>
                 </div>
             </div>
-            <InputNumber min={1} defaultValue={props.productAmount}></InputNumber>
-            <span>{props.productPrice}</span>
+            <div className="cardcartshopping__product__price">
+                <InputNumber min={1} defaultValue={props.productAmount}></InputNumber>
+                <span>{"$"+props.productPrice}</span>
+            </div>
         </div>
     )
 }
