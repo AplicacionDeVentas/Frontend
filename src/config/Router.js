@@ -12,6 +12,7 @@ import GeneralUser from "../pages/User/GeneralUser/GeneralUser"
 import OrderUser from "../pages/User/OrderUser/OrderUser.jsx"
 import DirectionUser from "../pages/User/DirectionUser/DirectionUser.jsx"
 import ConfigUser from "../pages/User/ConfigUser/ConfigUser.jsx"
+import SuccessBuy from "../pages/SuccessBuy"
 
 //components
 import Error404 from "../pages/Error/Error404.jsx";
@@ -80,6 +81,11 @@ const router = [
             {
                 path: "/signup",
                 component: SignUp,
+                exact: true
+            },
+            {
+                path: "/success-buy",
+                component: SuccessBuy,
                 exact: true
             },
             {

@@ -12,8 +12,7 @@ import "./CardCartshopping.scss"
 export default function CardCartshopping(props){
 
     const { setBagHidden, bagProducts, setBagProducts } = props
-    const {userData} = useAuth()  
-    console.log(userData)
+    const {userData} = useAuth()
     
     const subTotal = () => {
         var subTotalAux = 0
@@ -107,9 +106,7 @@ function ProductBag(props) {
     const deleteProduct = async data => {
         userData.cart.forEach((item, index) => {
             if(item.productPath.id == data.productUid){
-                console.log(index)
                 userData.cart.splice(index, 1)
-                //deleteUid = item.productPath.id
             }
         })
         await db.collection('user').doc(userData.uid).update(userData).catch(err => {
