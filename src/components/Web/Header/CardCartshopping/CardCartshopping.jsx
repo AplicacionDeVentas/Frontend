@@ -26,7 +26,8 @@ export default function CardCartshopping(props){
     const envio = () => {
         var envio = 0
         if(bagProducts){
-            return envio
+            // funcion para calcular envio aquí
+            return envio = 10000
         }
     }
     const total = () => {
@@ -68,7 +69,7 @@ export default function CardCartshopping(props){
                         </div>
                         <div>
                             <span>Envio:</span>
-                            <span>{envio() == 0 ? "Sin definir" : envio()}</span>
+                            <span>{envio() == 0 ? "Sin definir" : `COP $${envio()}`}</span>
                         </div>
                         <div>
                             <span>Total:</span>

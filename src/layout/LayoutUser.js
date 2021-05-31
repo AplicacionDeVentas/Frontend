@@ -12,7 +12,6 @@ export default function LayoutUser(props) {
     const {routes, location} = props;
     const [locationPathname, setLocationPathname] = useState(location.pathname)
     const {userData} = useAuth()
-    console.log(userData)
 
     useEffect(() => {
         setLocationPathname(location.pathname)
