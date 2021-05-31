@@ -21,18 +21,20 @@ export default function MenuButtons() {
         }
     },[userData])
 
-    const getDataMaceticas = (products) => {
+    const getDataMaceticas = async (products) => {
         var maceticaData = []
-        products.forEach(item => {
-            const maceticaRef = db.collection('maceticas').doc(item.productPath.id).get().then(result => {
+        for (let index = 0; index < products.length; index++) {
+            const element = products[index];
+            const maceticaRef = await db.collection('maceticas').doc(element.productPath.id).get().then(result => {
                 maceticaData.push({
                     name: result.data().name,
                     image_url: result.data().image_url,
                     price: result.data().price,
-                    quantity: item.amount 
+                    quantity: element.amount,
+                    productUid: element.productPath.id
                 })
             })
-        })
+        }
         setBagProducts(maceticaData)
     }
    
@@ -74,7 +76,7 @@ export default function MenuButtons() {
                     <span className="number">{numberBag()}</span>                          
                 </Menu.Item>                
             </Menu>
-            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} bagProducts={bagProducts} /> : null}
+            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} bagProducts={bagProducts} setBagProducts={setBagProducts} /> : null}
         </>
     )
 }

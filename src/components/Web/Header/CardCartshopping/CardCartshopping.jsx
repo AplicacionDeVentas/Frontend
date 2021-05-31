@@ -5,13 +5,15 @@ import InputButton from "../../../../Utils/InputButton/InputButton"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faTimes} from "@fortawesome/free-solid-svg-icons"
 import {useAuth} from "../../../../Providers/AuthProviders"
+import {db} from "../../../../config/FirebaseConfig"
 
 import "./CardCartshopping.scss"
 
 export default function CardCartshopping(props){
 
-    const { setBagHidden, bagProducts } = props
+    const { setBagHidden, bagProducts, setBagProducts } = props
     const {userData} = useAuth()  
+    console.log(userData)
     
     const subTotal = () => {
         var subTotalAux = 0
@@ -47,13 +49,15 @@ export default function CardCartshopping(props){
                     </div>
                     {
                         bagProducts ? bagProducts.map( (item, index) => (
-                            console.log(item),
                             <ProductBag
                                 key={index}
                                 productName={item.name}
                                 productAmount={item.quantity}
                                 productImg={item.image_url}
                                 productPrice={item.price}
+                                setBagProducts={setBagProducts}
+                                productUid={item.productUid}
+                                userData={userData}
                             />
                         )):
                         <div>No data</div>
@@ -88,18 +92,42 @@ export default function CardCartshopping(props){
 }
 
 function ProductBag(props) {
+    const {userData}= props
+
+    const changeAmount = async (amount, data) => {
+        userData.cart.forEach(item => {
+            if(item.productPath.id == data.productUid){
+                return item.amount = amount
+            }
+        })
+        await db.collection('user').doc(userData.uid).update(userData).catch(err => {
+            console.log("err"+err)
+        })
+    }
+    const deleteProduct = async data => {
+        userData.cart.forEach((item, index) => {
+            if(item.productPath.id == data.productUid){
+                console.log(index)
+                userData.cart.splice(index, 1)
+                //deleteUid = item.productPath.id
+            }
+        })
+        await db.collection('user').doc(userData.uid).update(userData).catch(err => {
+            console.log("err"+err)
+        })
+    }
     return(
         <div className="cardcartshopping__product">
             <div className="cardcartshopping__product__delete">
                 <img src={props.productImg}></img>
                 <span>{props.productName}</span>
-                <div>
+                <div onClick={() => deleteProduct(props)}>
                     <FontAwesomeIcon icon={faTimes} />
                     <p>Borrar producto</p>
                 </div>
             </div>
             <div className="cardcartshopping__product__price">
-                <InputNumber min={1} defaultValue={props.productAmount}></InputNumber>
+                <InputNumber min={1} defaultValue={props.productAmount} onChange={e => changeAmount(e, props)}></InputNumber>
                 <span>{"$"+props.productPrice}</span>
             </div>
         </div>
