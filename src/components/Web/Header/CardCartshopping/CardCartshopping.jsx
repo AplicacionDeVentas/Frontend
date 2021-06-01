@@ -45,7 +45,7 @@ export default function CardCartshopping(props){
                 <>
                     <div className="cardcartshopping__header">
                         <span>{userData.cart ?  `${userData.cart.length} Productos`: `0 Productos`}</span>
-                        <Link to={"/bag"}>Ver carrito</Link>
+                        <Link to={"/checkout"}>Ver carrito</Link>
                     </div>
                     {
                         bagProducts ? bagProducts.map( (item, index) => (
