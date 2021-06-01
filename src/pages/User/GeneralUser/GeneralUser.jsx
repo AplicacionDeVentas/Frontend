@@ -1,15 +1,16 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Link} from "react-router-dom"
+import {useAuth} from "../../../Providers/AuthProviders"
+
 import "./GeneralUser.scss"
 
 export default function GeneralUser() {
-
-    const [userData, setUserData] = useState({email: "jaunitoperez@gmail.com"})
+    const {userData} = useAuth()
     return (
         <div className="general-user">
             <div className="general-user__welcome">                
                 {
-                    userData.name ? 
+                    userData && userData.name ? 
                     <p>Bienvenido <span className="general-user__welcome_name">{userData.name}</span></p>
                     :
                     <p>Bienvenido <span className="general-user__welcome_name">{userData.email}</span> <span>deseas</span> <Link to={"/user/setting"}>agregar tu nombre?</Link></p>

@@ -24,7 +24,7 @@ export default function LayoutUser(props) {
     return (
         userData ?
         <>
-            <PageHeader />
+            <PageHeader search={true} />
             <main className="container user">                        
                 <Menu className="user__menu" selectedKeys={[locationPathname]}>
                     <Menu.Item key="/user">

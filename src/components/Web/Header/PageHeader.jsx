@@ -9,7 +9,7 @@ import MenuButtons from "./MenuButtons/MenuButtons";
 import "./PageHeader.scss";
 
 
-const PageHeader = () => {
+const PageHeader = (props) => {
 
   const [change, setChange] = useState(false);
   const [iconSearch, setIconSearch] = useState(true)
@@ -17,13 +17,18 @@ const PageHeader = () => {
   const history = useHistory()
   
   const handleSubmit = (e) => {
-    history.push({
+    history.replace({
       search: `?search=${e}`
     })
     if(e != ""){
       return setIconSearch(false)
     }
-    return setIconSearch(true)
+    if(e == ""){
+      history.replace({
+        search: ""
+      })
+      return setIconSearch(true)
+    }
   }
   
   useEffect(() => {
@@ -46,10 +51,15 @@ const PageHeader = () => {
               <Link to={"/"}><span>Miss Maceticas</span></Link>
             </div>
 
-            <div className="navbar__search">                         
-              <input id="search" className="search" type="search" placeholder="Buscar producto" onChange={e => {setValue(e.target.value)}} value={value} ></input>
-              <IconButton icon={iconSearch ? faSearch : faTimes} onClick={() => (setValue(""), document.getElementById("search").focus())}/>
-            </div>
+            {
+              !props.search ? 
+              <div className="navbar__search">                         
+                <input id="searchproduct" autoComplete="off" autoCorrect="off" className="search" type="search" placeholder="Buscar producto" onChange={e => {setValue(e.target.value)}} value={value} ></input>
+                <IconButton icon={iconSearch ? faSearch : faTimes} onClick={() => (setValue(""), document.getElementById("searchproduct").focus())}/>
+              </div>
+              :
+              null
+            }
             
             <MenuButtons />            
 
