@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import {Link} from "react-router-dom";
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import React, {useState, useEffect} from 'react';
+import {Link, useHistory} from "react-router-dom";
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Layout, Menu } from 'antd';
 import IconButton from '../../../Utils/IconButton';
 import MenuBars from "./MenuBars/MenuBars";
@@ -9,10 +9,31 @@ import MenuButtons from "./MenuButtons/MenuButtons";
 import "./PageHeader.scss";
 
 
-const PageHeader = () => {
+const PageHeader = (props) => {
 
   const [change, setChange] = useState(false);
+  const [iconSearch, setIconSearch] = useState(true)
+  const [value, setValue] = useState("")
+  const history = useHistory()
   
+  const handleSubmit = (e) => {
+    history.replace({
+      search: `?search=${e}`
+    })
+    if(e != ""){
+      return setIconSearch(false)
+    }
+    if(e == ""){
+      history.replace({
+        search: ""
+      })
+      return setIconSearch(true)
+    }
+  }
+  
+  useEffect(() => {
+    handleSubmit(value)
+  }, [value])
   
   const menuResponsive = () => {
     setChange(!change);
@@ -30,10 +51,15 @@ const PageHeader = () => {
               <Link to={"/"}><span>Miss Maceticas</span></Link>
             </div>
 
-            <div className="navbar__search">                         
-              <input className="search" type="search" placeholder="Buscar producto"></input>
-              <IconButton icon={faSearch} />
-            </div>
+            {
+              !props.search ? 
+              <div className="navbar__search">                         
+                <input id="searchproduct" autoComplete="off" autoCorrect="off" className="search" type="search" placeholder="Buscar producto" onChange={e => {setValue(e.target.value)}} value={value} ></input>
+                <IconButton icon={iconSearch ? faSearch : faTimes} onClick={() => (setValue(""), document.getElementById("searchproduct").focus())}/>
+              </div>
+              :
+              null
+            }
             
             <MenuButtons />            
 

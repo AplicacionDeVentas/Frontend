@@ -16,6 +16,7 @@ const InputField = (props) => {
         autoCapitalize={props.autoCapitalize}
         value={props.value}
         onChange={props.onChange}
+        defaultValue={props.defaultValue}
       />
     </div>
   )

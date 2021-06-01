@@ -14,7 +14,7 @@ export default function SuccessBuy() {
                 <p>Tu compa ha sido exitosa</p>
                 <div className="success-buy__resume">
                     <h2>Resumen de tu compra</h2>
-                    <a>Enviar resumen a mi correo eléctronico</a>
+                    <a>Enviar resumen al correo eléctronico</a>
                 </div>
                 <AnchorButton href="/" value="Regresar a tienda" />
             </div>

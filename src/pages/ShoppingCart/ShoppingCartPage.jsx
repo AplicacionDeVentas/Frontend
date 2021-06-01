@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import md5 from 'crypto-js/md5'
 import { useAuth } from '../../Providers/AuthProviders'
 import { db } from '../../config/FirebaseConfig'
-import InputField from '../../Utils/InputField/InputField'
 import InputButton from '../../Utils/InputButton/InputButton'
 
 import './ShoppingCartPage.scss'
@@ -19,7 +18,6 @@ const ShoppingCartPage = () => {
     }
     if (productsInfo.length > 0) {
       getBillingData()
-      console.log('a')
     }
   }, [userData, productsInfo])
   
@@ -61,24 +59,18 @@ const ShoppingCartPage = () => {
     userData.cart.map(product => {
       products += product.amount
     })
-    console.log('Products: ' + products)
     return products
   }
   
   const getBillingTotal = () => {
     let total = 0
-    console.log(productsInfo)
     if (productsInfo.length) {
       productsInfo.map((product, index) => {
-        console.log(`Inside map: ${product.price}`)
         total += product.price * userData.cart[index].amount
       })
-      console.log('Total: ' + total)
       return total
     }
     else {
-      console.log(productsInfo.length)
-      console.log('No hay informacion de productos.')
       return null
     }
   }
@@ -86,14 +78,12 @@ const ShoppingCartPage = () => {
   const getTax = () => {
     const total = getBillingTotal()
     const tax = Math.round((total / 1.19) * 0.19)
-    console.log('Tax: ' + tax)
     return tax
   }
 
   const getTaxReturnBase = () => {
     const tax = getTax()
     const taxReturnBase = getBillingTotal() - tax
-    console.log('Tax Return: ' + taxReturnBase)
     return taxReturnBase
   }
   
@@ -109,17 +99,13 @@ const ShoppingCartPage = () => {
         shippingInfo = addressObject[infoType]
       }
     })
-    console.log(`${infoType.replace(/^\w/, (c) => c.toUpperCase())} information: ` + shippingInfo)
     return shippingInfo
   }
 
   const getHashedString = () => {
     const price = getBillingTotal().toString()
     const stringToHash = `${process.env.REACT_APP_PAYU_API_KEY}~${process.env.REACT_APP_PAYU_MERCHANT_ID}~${getReferenceCode()}~${price}~${process.env.REACT_APP_PAYU_CURRENCY}`
-    console.log(stringToHash)
     const hashed= md5(stringToHash)
-    console.log(hashed)
-    console.log(hashed.toString())
     return hashed.toString()
   }
 
@@ -127,14 +113,6 @@ const ShoppingCartPage = () => {
     return 'Testing Scon9872345'
   }
 
-  const testFunc = (event) => {
-    event.preventDefault()
-    console.log(event)
-    for (let i = 0; i < event.target.length; i++) {
-      const input = event.target[i];
-      console.log(input.value)
-    }
-  }
 
   return (
     userData ?
@@ -143,9 +121,6 @@ const ShoppingCartPage = () => {
         <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
           <div className="billing-details">
             <h1>Billing Details</h1>
-            {
-              console.log(billingData)
-            }
             {
               billingData && userData ?
               <>

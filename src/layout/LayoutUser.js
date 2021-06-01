@@ -12,7 +12,6 @@ export default function LayoutUser(props) {
     const {routes, location} = props;
     const [locationPathname, setLocationPathname] = useState(location.pathname)
     const {userData} = useAuth()
-    console.log(userData)
 
     useEffect(() => {
         setLocationPathname(location.pathname)
@@ -25,7 +24,7 @@ export default function LayoutUser(props) {
     return (
         userData ?
         <>
-            <PageHeader />
+            <PageHeader search={true} />
             <main className="container user">                        
                 <Menu className="user__menu" selectedKeys={[locationPathname]}>
                     <Menu.Item key="/user">

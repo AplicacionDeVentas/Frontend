@@ -1,24 +1,33 @@
 import React, {useState} from 'react'
 import InputField from "../../../Utils/InputField/InputField"
-import AnchorButton from "../../../Utils/AnchorButton/AnchorButton"
+import {useAuth} from "../../../Providers/AuthProviders"
+import {db} from "../../../config/FirebaseConfig"
 
 import "./FormConfigUser.scss"
 
 export default function FormConfigUser() {
+    const {userData} = useAuth()
     const [dataConfigUser, setDataConfigUser] = useState({
-        name: "",
-        lastname: "",
-        nickname: "",
-        email: ""
+        name: userData.name,
+        lastname: userData.lastname,
+        nickname: userData.nickname,
+        email: userData.email
     });
 
-    const getConfigUser = () => {
-        console.log(dataConfigUser);
+    const getConfigUser = async (e, dataConfigUser) => {
+        e.preventDefault()
+        userData.name = dataConfigUser.name
+        userData.lastname = dataConfigUser.lastname
+        userData.nickname = dataConfigUser.nickname
+
+        await db.collection('user').doc(userData.uid).update(userData).catch(err => {
+            console.log("err"+err)
+        })
     }
 
     return (
         <>
-            <form className="formconfig-user" onSubmit={getConfigUser}>
+            <form className="formconfig-user" onSubmit={ (e) => getConfigUser(e, dataConfigUser)}>
                 <fieldset className="formconfig-user__fullname">
                     <div>
                         <label>Nombres <abbr title="Obligatorio">*</abbr></label>                     
