@@ -6,6 +6,7 @@ const InputButton = (props) => {
   return (
     <div className="inputButton">
       <input
+        name={props.name}
         className="inputButton__input"
         type="submit"
         value={props.value}

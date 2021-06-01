@@ -58,7 +58,8 @@ export default function SignUp() {
       email: credentialUser.email,
       isAdmin: false,
       uid: uid,
-      cart: []
+      cart: [],
+      addresses: []
     })
   }
 
