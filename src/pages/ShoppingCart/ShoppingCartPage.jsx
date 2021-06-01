@@ -124,7 +124,7 @@ const ShoppingCartPage = () => {
   }
 
   const getReferenceCode = () => {
-    return 'Testing Scon987'
+    return 'Testing Scon9872345'
   }
 
   const testFunc = (event) => {
@@ -166,7 +166,7 @@ const ShoppingCartPage = () => {
                 <input type="hidden" name="shippingCity" value={billingData.shippingCity}/>
                 <input type="hidden" name="shippingCountry" value={billingData.shippingCountry}/>
                 <input type="hidden" name="telephone" value={billingData.telephone}/>
-                <input type="hidden" name="responseUrl" value="http://localhost:3000/#/"/>
+                <input type="hidden" name="responseUrl" value="http://localhost:3000/#/success-buy"/>
               </>
               :
               <>

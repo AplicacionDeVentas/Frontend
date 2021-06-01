@@ -1,5 +1,5 @@
 import React from "react"
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {InputNumber} from "antd"
 import InputButton from "../../../../Utils/InputButton/InputButton"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
@@ -13,6 +13,7 @@ export default function CardCartshopping(props){
 
     const { setBagHidden, bagProducts, setBagProducts } = props
     const {userData} = useAuth()
+    const history = useHistory()
     
     const subTotal = () => {
         var subTotalAux = 0
@@ -36,15 +37,15 @@ export default function CardCartshopping(props){
             return total
         }
     }
-    
+
     return (
         <div className="cardcartshopping" onMouseLeave={() => setBagHidden(false)}>
             {
                 userData && userData.cart.length > 0 ? 
                 <>
                     <div className="cardcartshopping__header">
-                        <span>{userData.cart ?  `${userData.cart.length} Productos`: `0 Productos`}</span>
-                        <Link to={"/checkout"}>Ver carrito</Link>
+                        <span>{userData.cart ? `${userData.cart.length} Productos`: `0 Productos`}</span>
+                        <Link to={"/bag"}>Ver carrito</Link>
                     </div>
                     {
                         bagProducts ? bagProducts.map( (item, index) => (
@@ -75,7 +76,7 @@ export default function CardCartshopping(props){
                             <span>COP ${total()}</span>
                         </div>
                     </div>
-                    <InputButton value="Realizar pago" />
+                    <InputButton value="Realizar pago" onClick={() => history.push('/checkout')}/>
                 </>
                 :
                 <>

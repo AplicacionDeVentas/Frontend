@@ -57,8 +57,8 @@ export default function PageFooter() {
                     <IconButton icon={faGithub} size="lg"/>
                   </a>
                   <a onClick={() => InsertHref(true, "https://www.linkedin.com/in/camilovargas123/")} rel="noreferrer">
-                    <IconButton icon={faLinkedin} size="lg"/>                 
-                  </a>            
+                    <IconButton icon={faLinkedin} size="lg"/>
+                  </a>
                 </div>
               </div>
               <div className="developer">
@@ -66,6 +66,9 @@ export default function PageFooter() {
                 <div className="share-link">
                   <a href="https://github.com/apchirinoc" target="_blank" rel="noreferrer" >
                     <IconButton icon={faGithub} size="lg" />
+                  </a>
+                  <a href="https://linkedin.com/in/apchirinoc" target="_blank" rel="noreferrer" >
+                    <IconButton icon={faLinkedin} size="lg" />
                   </a>
                   <a href="https://twitter.com/apchirinoc" target="_blank" rel="noreferrer" >
                     <IconButton icon={faTwitter} size="lg"/>
