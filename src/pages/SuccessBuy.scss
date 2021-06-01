@@ -1,0 +1,51 @@
+@import "../scss/index.scss";
+
+.success-buy {
+    min-height: 93vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -5em;
+
+    h1 {
+        color: $tertiary-color;
+        font-size: 4em;
+    }
+    p{
+        margin-top: .5em;
+        font-size: 1.3em;
+    }
+
+    &__resume{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1em 2em;
+        margin: 3em 0;
+        background-color: $primary-color-hover;
+        border-radius: 10px;
+        min-height: 10em;
+        h2{
+            color: $optional-color-hover;
+            font-size: 2em;
+        }
+    }
+
+    .anchorButton{
+        width: auto;
+        &__a{
+            background: none;
+            border: 2px solid $tertiary-color;
+            font-size: 1.3em;
+            padding: .7em;
+            color: $tertiary-color;
+            &:hover{
+                background: $tertiary-color;
+                color: $primary-color;
+            }
+        }
+    }
+}

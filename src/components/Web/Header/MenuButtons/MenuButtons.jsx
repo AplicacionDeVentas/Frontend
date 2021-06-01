@@ -11,9 +11,32 @@ import "./MenuButtons.scss";
 
 export default function MenuButtons() {
 
-    const [bagHidden, setBagHidden] = useState(false);
-    const {userData} = useAuth();
+    const [bagHidden, setBagHidden] = useState(false)
+    const [bagProducts, setBagProducts] = useState(null)
+    const {userData} = useAuth()
 
+    useEffect(() => {
+        if(userData && userData.cart){
+            getDataMaceticas(userData.cart)
+        }
+    },[userData])
+
+    const getDataMaceticas = async (products) => {
+        var maceticaData = []
+        for (let index = 0; index < products.length; index++) {
+            const element = products[index];
+            const maceticaRef = await db.collection('maceticas').doc(element.productPath.id).get().then(result => {
+                maceticaData.push({
+                    name: result.data().name,
+                    image_url: result.data().image_url,
+                    price: result.data().price,
+                    quantity: element.amount,
+                    productUid: element.productPath.id
+                })
+            })
+        }
+        setBagProducts(maceticaData)
+    }
    
    const numberBag = () => {
        var number = 0
@@ -53,7 +76,7 @@ export default function MenuButtons() {
                     <span className="number">{numberBag()}</span>                          
                 </Menu.Item>                
             </Menu>
-            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} /> : null}
+            {bagHidden ? <CardCartshopping setBagHidden={setBagHidden} bagProducts={bagProducts} setBagProducts={setBagProducts} /> : null}
         </>
     )
 }

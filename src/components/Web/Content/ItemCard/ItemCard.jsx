@@ -26,7 +26,7 @@ const ItemCard = (props) => {
           break
         }
       }
-
+      
       if(userData.cart.length == 0){
         isNew = true
       }
@@ -36,7 +36,6 @@ const ItemCard = (props) => {
       await db.collection('user').doc(userData.uid).update(userData).catch(err => {
         console.log("err"+err)
       })
-      console.log(userData)
 
     }
     else{

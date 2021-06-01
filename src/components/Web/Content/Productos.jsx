@@ -1,23 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ItemCard from './ItemCard/ItemCard'
-import { db } from '../../../config/FirebaseConfig'
 
 import "./Productos.scss";
 
 
 const Productos = (props) => {
-
-    const [maceticas, setMaceticas] = useState([])
-
-    useEffect( () => {
-        GetMaceticas()
-    }, [])
-
-    const GetMaceticas = async() => {
-        const { docs } = await db.collection('maceticas').get()
-        const maceticasArray = docs.map(item => ({id: item.id, ...item.data()}))
-        setMaceticas(maceticasArray)
-    }
+    const {maceticas} = props
 
     return (
         <div className={"hero-main " + props.bannerType}>
@@ -25,11 +13,14 @@ const Productos = (props) => {
               <h1 className="banner-title">{props.bannerTitle}</h1>
               <p className="banner-description">{props.bannerDescription}</p>
               <div className="banner">
+                <div className="items">
                   {
-                      maceticas.length !== 0 ?
+                      maceticas && maceticas.length > 0 ?
                       (
-                        maceticas.map((item, index) =>
-                            (<ItemCard
+                        maceticas.map((item, index) => {
+                          if(item.isNew && props.bannerType == "best-sellers"){
+                            return (
+                              <ItemCard
                                 key={index}
                                 id={item.id}
                                 maceticaImg={item.image_url}
@@ -40,10 +31,50 @@ const Productos = (props) => {
                                 maceticaRating={item.rating}
                                 maceticaIsNew={item.isNew}
                                 maceticaOffer={item.offer}
-                            />)
+                              />
+                            )
+                          }
+                          if(item.offer > 0 && props.bannerType == "on-sale"){
+                            return (
+                              <ItemCard
+                                key={index}
+                                id={item.id}
+                                maceticaImg={item.image_url}
+                                maceticaAltImg={item.name}
+                                maceticaName={item.name}
+                                maceticaPrice={item.price/1000}
+                                maceticaCategories={item.categories}
+                                maceticaRating={item.rating}
+                                maceticaIsNew={item.isNew}
+                                maceticaOffer={item.offer}
+                              />
+                            )
+                          }
+                          if(props.bannerType == "all-product"){
+                            return (
+                              <ItemCard
+                                  key={index}
+                                  id={item.id}
+                                  maceticaImg={item.image_url}
+                                  maceticaAltImg={item.name}
+                                  maceticaName={item.name}
+                                  maceticaPrice={item.price/1000}
+                                  maceticaCategories={item.categories}
+                                  maceticaRating={item.rating}
+                                  maceticaIsNew={item.isNew}
+                                  maceticaOffer={item.offer}
+                              />
+                            )
+                          }
+                        }
                         )
-                      ):null
+                      )
+                      :
+                      <>
+                        <div>Sin productos en stock</div>
+                      </>
                   }
+                </div>
               </div>
             </div>
         </div>

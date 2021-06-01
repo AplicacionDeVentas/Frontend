@@ -1,8 +1,8 @@
 @import "../../../scss/index.scss";
 
 .hero-main {
-    padding: 1em 0;
-
+    padding: 3em 0 1em 0;
+    
     .banner-title {
         text-align: center;
         font-size: 3em;
@@ -24,15 +24,33 @@
 }
 
 .banner {
-    display: flex;
-    justify-content: center;
-    padding: 4em 0;
+    padding-top: 4em;
+    padding-bottom: 3em;
     overflow-x: auto;
-    overflow-y: hidden;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    min-height: 30em;
+    .items {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        white-space: nowrap;
+    }
+    &::-webkit-scrollbar {
+        height: 1em;
+        background-color: $optional-color;
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb{
+        background-color: $tertiary-color;
+        border-radius: 10px;
+    }
 }
 
-.banner::-webkit-scrollbar {
-    display: none;
+.all-product{
+    .banner{
+        overflow-x: inherit;
+        .items {
+            flex-wrap: wrap;
+            gap: 2em;
+        }
+    }
 }
