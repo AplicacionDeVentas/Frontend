@@ -1,0 +1,64 @@
+@import "../../scss/index.scss";
+
+.shopping-cart {
+
+    .column {
+        width: 65%;
+    }
+
+
+    form {
+        gap: 4em;
+        font-size: 1.2em;
+        margin: 3em 0;
+        display: flex;
+        justify-content: space-evenly;
+
+        label, p {
+            line-height: 3em;
+            font-size: 1.2em;
+        }
+
+        .inputField {
+            margin-bottom: 1em;
+        }
+
+        input[type=radio] {
+            margin-right: 1em;
+        }
+
+        input[type=radio] + label {
+            font-size: 0.8em;
+        }
+    }
+
+    .billing-details {
+
+        h1 {
+            margin-bottom: 1.4em;
+        }
+    }
+
+    .order-review {
+
+        table {
+            margin: 4em 0;
+
+            &, td, th {
+                border: 1px solid $tertiary-color;
+            }
+
+            td, th {
+                padding: 1em 2em;
+            }
+
+            tfoot th, thead th {
+                background-color: #c4d0c4;
+            }
+
+            tbody td, tfoot td {
+                background-color: $primary-color;
+            }
+        }
+    }
+}

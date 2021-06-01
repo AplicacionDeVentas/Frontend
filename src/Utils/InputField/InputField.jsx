@@ -6,6 +6,7 @@ const InputField = (props) => {
   return (
     <div className="inputField">
       <input
+        id={props.id}
         checked = {props.checked}
         name={props.name}
         type={props.type}

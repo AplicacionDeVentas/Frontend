@@ -3,6 +3,7 @@ import md5 from 'crypto-js/md5'
 import { useAuth } from '../../Providers/AuthProviders'
 import { db } from '../../config/FirebaseConfig'
 import InputButton from '../../Utils/InputButton/InputButton'
+import InputField from '../../Utils/InputField/InputField'
 
 import './ShoppingCartPage.scss'
 
@@ -105,12 +106,12 @@ const ShoppingCartPage = () => {
   const getHashedString = () => {
     const price = getBillingTotal().toString()
     const stringToHash = `${process.env.REACT_APP_PAYU_API_KEY}~${process.env.REACT_APP_PAYU_MERCHANT_ID}~${getReferenceCode()}~${price}~${process.env.REACT_APP_PAYU_CURRENCY}`
-    const hashed= md5(stringToHash)
+    const hashed = md5(stringToHash)
     return hashed.toString()
   }
 
   const getReferenceCode = () => {
-    return 'Testing Scon9872345'
+    return 'Testing 2543525'
   }
 
 
@@ -119,8 +120,8 @@ const ShoppingCartPage = () => {
     <>
       <div className="container shopping-cart">
         <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
-          <div className="billing-details">
-            <h1>Billing Details</h1>
+          <div className="billing-details column">
+            <h1>Información de Pago</h1>
             {
               billingData && userData ?
               <>
@@ -135,12 +136,45 @@ const ShoppingCartPage = () => {
                 <input type="hidden" name="currency" value={billingData.currency}/>
                 <input type="hidden" name="signature" value={billingData.signature}/>
                 <input type="hidden" name="test" value="1"/>
-                <input type="hidden" name="buyerEmail" value={billingData.buyerEmail}/>
-                <input type="hidden" name="buyerFullName" value={billingData.buyerFullName}/>
-                <input type="hidden" name="shippingAddress" value={billingData.shippingAddress}/>
+                <label htmlFor="buyerFullName">Titular de Pago:</label>
+                <InputField
+                  id="buyerFullName"
+                  type="text"
+                  name="buyerFullName"
+                  value={billingData.buyerFullName}
+                  placeholder="Titular de Pago"
+                  onChange={(e) => setBillingData({...billingData, buyerFullName: e.target.value})}
+                />
+                <label htmlFor="buyerEmail">Correo Electrónico:</label>
+                <InputField
+                  id="buyerEmail"
+                  type="text"
+                  name="buyerEmail"
+                  placeholder="Correo Electrónico"
+                  value={billingData.buyerEmail}
+                  onChange={(e) => setBillingData({...billingData, buyerEmail: e.target.value})}
+                />
+                <label htmlFor="telephone">Telefono:</label>
+                <InputField
+                  id="telephone"
+                  type="text"
+                  name="telephone"
+                  placeholder="Telefono"
+                  value={billingData.telephone}
+                  onChange={(e) => setBillingData({...billingData, telephone: e.target.value})}
+                />
+                <p>Direcciones:</p>
+                {
+                  userData.addresses.map((address, index) => (
+                    <>
+                      <input key={index} id={`${index}-address`} type="radio" name="shippingAddress" value={address.address} defaultChecked={address.active}/>
+                      <label key={index} htmlFor={`${index}-address`}>{address.address}</label><br/>
+                    </>
+                  ))
+                }
+                {/* <input type="hidden" name="shippingAddress" value={billingData.shippingAddress}/> */}
                 <input type="hidden" name="shippingCity" value={billingData.shippingCity}/>
                 <input type="hidden" name="shippingCountry" value={billingData.shippingCountry}/>
-                <input type="hidden" name="telephone" value={billingData.telephone}/>
                 <input type="hidden" name="responseUrl" value="http://localhost:3000/#/success-buy"/>
               </>
               :
@@ -148,33 +182,49 @@ const ShoppingCartPage = () => {
               </>
             }
           </div>
-          <div className="order-review">
-            <h1>Order Review</h1>
+          <div className="order-review column">
+            <h1>Detalles de Compra</h1>
             <table>
               <thead>
                 <tr>
-                  <th>Product</th>
-                  <th>Subtotal</th>
+                  <th>Producto</th>
+                  <th>Valor</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Product 1 x 2</td>
-                  <td>COP$20000</td>
-                </tr>
+                  {
+                    productsInfo ?
+                    <>
+                      {productsInfo.map((product, index) => (
+                        <>
+                          <tr>
+                            <td>{product.name} x {userData.cart[index].amount}</td>
+                            <td>COP${product.price / 1000}.000</td>
+                          </tr>
+                        </>
+                      ))}
+                    </>
+                    :
+                    <>
+                    </>
+                  }
               </tbody>
               <tfoot>
                 <tr>
                   <th>Subtotal</th>
-                  <td>COP$20000</td>
+                  <td>COP${Math.round(billingData.taxReturnBase / 1000)}.{billingData.taxReturnBase % 1000}</td>
                 </tr>
                 <tr>
-                  <th>Shipping</th>
-                  <td>COP$20000</td>
+                  <th>IVA (19%)</th>
+                  <td>COP${Math.trunc(billingData.tax / 1000)}.{billingData.tax % 1000}</td>
+                </tr>
+                <tr>
+                  <th>Envío</th>
+                  <td>Sin definir</td>
                 </tr>
                 <tr>
                   <th>Total</th>
-                  <td>COP$20000 (includes IVA 19%)</td>
+                  <td>COP${billingData.amount / 1000}.000 (incluye IVA 19%)</td>
                 </tr>
               </tfoot>
             </table>
